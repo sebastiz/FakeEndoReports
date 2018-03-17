@@ -102,27 +102,13 @@ IntRanOneElementWithPhrase <- function(inputString,listtoSample,addedPhrase1,add
     else {
       return(x)
     }
-    
+
   })
   out<-listtodf(out)
 }
 
 
-#'Always interpolate- random 1 element from a list
-#'
-#' This adds an extra phrase from a list based on flag- check to see if IntRanOneElement1 already does this
-#' @param inputString
-#' @param listtoSample
-#' @keywords cats
-#' @export
-#' @examples IntRanOneElement()
-IntRanOneElement<-function(inputString,listtoSample){
-  out$out[out$out == inputString] <- sample(listtoSample, sum(out$out == inputString), TRUE)
-  listtodf(out)
-  return(out)
-}
-
-
+#'IntRanNumber
 #'Always interpolate- random number of elements from a list
 #'
 #'
@@ -165,7 +151,7 @@ IntRanMultipleElements <- function(inputString,listtoSample){
     else {
       return(x)
     }
-    
+
   })
   out<-listtodf(out)
 }

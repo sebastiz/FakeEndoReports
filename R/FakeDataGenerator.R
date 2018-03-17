@@ -1,129 +1,6 @@
 library(stringr)
 #Get the out to be dataframe again after function
-
-listtodf<-function(thelist){
-thelist<-data.frame(unlist(thelist))
-names(thelist)<-c("out")
-thelist[,1]<-as.character(thelist[,1])
-return(thelist)
-}
-
-
-#Flag maker flag("Normal gastroscopy to the duodenum.","Hiatus",8)
-flag<-function(inputString,outputString,proportion){
-  out[sample(which(out[,1]==inputString), sum(out[,1]==inputString)/proportion), 1] <- outputString
-  return(out)
-}
-
-
-#Report bulker- looks at what is in the report, then adds another row's report to the current to bulk it up.
-#It specifically doesn't add reports that mention the same compartment to avoid contradictions
-bulker <- function(inputString){
-  apply(out, 1, function(x) {
-
-  #If you get a match for the following
-  if (stringr::str_detect(x, inputString)) {
-    #Then store that match
-    mymatch<-stringr::str_match(x, inputString)
-    #Then use the match to select out any report that does not have that match in it to avoid conflicting results
-    t<-data.frame(out[!grepl(mymatch,out$out),])
-    # Get a random row:
-    ret<-as.character(t[sample(1:nrow(t),1),])
-    ret<-gsub("Normal gastroscopy to the duodenum.","",ret)
-    # Now just need to paste the result into the row
-    ret2<-paste0(x,"\n",ret)
-    return(ret2)
-  }
-
-  else {
-    return(x)
-  }
-})
-}
-
-
-#Internally relevant detail adder - interpolate
-#This adds the detail to a report based on the input string (ie based on the flag)
-
-IntRanOneElement1 <- function(inputString,listtoSample){
-  out<-apply(out, 1, function(x) {
-  if (stringr::str_detect(x, inputString)) {
-   ret<-paste0(sample(listtoSample,1,replace=T),".")
-   return(ret)
-  }
-  else {
-    return(x)
-  }
-    out<-listtodf(out)
-    })
-  out<-listtodf(out)
-}
-
-#Always interpolate- random 1 element from a list
-#This adds an extra phrase from a list based on flag- check to see if IntRanOneElement1 already does this
-
-IntRanOneElement<-function(inputString,listtoSample){
-  out$out[out$out == inputString] <- sample(listtoSample, sum(out$out == inputString), TRUE)
-  listtodf(out)
-  return(out)
-}
-
-
-#Internally relevant detail adder with extra phrase- interpolate
-
-IntRanOneElementWithPhrase <- function(inputString,listtoSample,addedPhrase1,addedPhrase2){
-  out<- apply(out, 1, function(x) {
-    if (stringr::str_detect(x, inputString)) {
-      ret<-paste0(x,addedPhrase1,addedPhrase2,sample(listtoSample,1,replace=T))
-      return(ret)
-    }
-    else {
-      return(x)
-    }
-
-  })
-  out<-listtodf(out)
-}
-
-
-
-
-#Always interpolate- random number of elements from a list
-#Example:  IntRanMultipleElements("exudates|Pull|crepe|Rings|tight",FD_EosinophilicDetail)
-
-IntRanMultipleElements <- function(inputString,listtoSample){
-  out<-apply(out, 1, function(x) {
-    if (stringr::str_detect(x, inputString)) {
-      y<-paste(sample(unlist(listtoSample), size = sample(1:3)), collapse =" ")
-x<-paste(x,y)
-      return(x)
-    }
-    else {
-      return(x)
-    }
-
-  })
-  out<-listtodf(out)
-}
-
-
-RandomSingleGsub<-function(phraseToReplace,listOfReplacements){
-  out<-apply(out, 1, function(x) {
-    x<-gsub(phraseToReplace,  paste0(sample(listOfReplacements,1,replace=F)),x)
-  })
-  out<-listtodf(out)
-}
-
-##########################################################################################################################################################################
-
-
-
-
-
-
-
-
-
+library(FakeEndoReports)
 
 ################################################################ LISTS- Sentence introduction #####################################################################################
 
@@ -196,11 +73,11 @@ FD_HiatusDetail<-list(x="HiatusDetail1",
                       x="HiatusDetail3",
                       x="HiatusDetail14")
 
-FD_OesophagitisIntro<-list(x="LA Grade A oesophagitis noted.",
-                           x="LA Grade B oesophagitis noted.",
-                           x="LA Grade C oesophagitis noted.",
-                           x="LA Grade D oesophagitis noted.",
-                           x="severe oesophagitis with ulceration.")
+
+FD_OesophagitisIntro<-c("severe oesophagitis with ulceration.")
+FD_OesophagitisIntro<-list(unique(append(FD_OesophagitisIntro,replicate(4,paste("LA Grade ",sample(c("A","B","C","D"),replace=F))))))
+
+
 FD_OesophagitisDetail<-list(x="Food present in the oesophagus",
                             x="Gastric mucosal prolapse also seen",
                             x="The lower oesopahgeal sphincter looks widely patent",
@@ -216,7 +93,7 @@ FD_InletDetail<-list(x="PatchDetails1",
                      x="PatchDetails3.")
 
 FD_EosinophilicIntro<-list(x="Linear furrowing is present",
-                           x="fSeveral white exudates were seen",
+                           x="Several white exudates were seen",
                            x="Pull sign was demonstrated.",
                            x="The patient had crepe paper oesophagitis",
                            x="Rings were seen throughout the oesophagus",
@@ -230,12 +107,9 @@ FD_EosinophilicDetail<-list(x="EoEBoo1",
                             x="EoEBo06")
 
 FD_Dilatation<-c("The stricture will need to be dilatated in radiology",
-                 "dilated to 12mm with a CRE balloon",
-                 "dilated to 15mm with a CRE balloon",
-                 "dilated to 18mm with a CRE balloon",
-                 "dilated to 20mm with a CRE balloon",
                  "A superficial mucosal tear was seen after dilatation",
                  "A deep mucosal tear was seen after dilatation")
+FD_Dilatation<-list(unique(append(FD_Dilatation, replicate(5,paste("dilated to",sample(10:20), "mm with a CRE balloon")))))
 
 FD_DilatationDetails<-c("A superficial mucosal tear was seen after dilatation",
                         "A deep mucosal tear was seen after dilatation")
