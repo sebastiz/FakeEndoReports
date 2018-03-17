@@ -6,7 +6,9 @@ library(FakeEndoReports)
 
 
 ##### LISTS- Sentence introduction #####
+# Distribute the reports so that there are empties and Normals
 FD_SentenceIntro<-list(x=" ",x="Normal gastroscopy to the duodenum.")
+
 FD_SentenceIntro1<-list(x="The patient has ",x="There is ")
 
 ##### LISTS- Basic descriptor lists #####
