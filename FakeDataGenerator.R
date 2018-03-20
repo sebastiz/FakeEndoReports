@@ -1,6 +1,5 @@
 library(stringr)
 #Get the out to be dataframe again after function
-library(FakeEndoReports)
 
 ################################################################ LISTS- Sentence introduction #####################################################################################
 
@@ -31,30 +30,28 @@ FD_StrictureDescSecond<-list(x="",x="It will not allow the scope to pass",x="It 
 
 #Need to slot these in to a subset of normals and also to add to some of the other reports too
 FD_BarrettIntro<-list(x="The patient has Barrett's oesophagus",x="Columnar lined oesophagus is present",x="Barrett's is present")
-FD_BarrettDetail1<-list(x="The segment looks flat.",
+FD_BarrettDetail1_Decsrip<-list(x="The segment looks flat.",
+                                x= "Prague score C0M3",
+                                x= "It is x cm in length.",
+                                x="This is an ultra-short segment.")
+FD_BarrettDetail1_Benign<-list(x="The segment looks flat.",
                         x="No nodularity is present.",
                         x="It is a long segment.",
                         x="Some areas of vascular abnormalities are seen.",
                         x="The pit pattern is normal.",
                         x="No abnormal pit pattern is seen.",
-                        x="The segment looked strictured",
                         x="Oesophagitis was present.",
-                        x="It is x cm in length.",
                         x="No loss of aceto-whitening was seen.",
-                        x="Subtle nodularity noted near the GOJ.",
                         x="Gastric mucosal prolapse seen.",
-                        x="This is an ultra-short segment.",
-                        x="Short segment only.",
-                        x="Ulceration seen at x cm.")
-FD_BarrettDetail2<-list(x="FD_BarrettDetail2 1",
-                        x="FD_BarrettDetail2 2.",
-                        x="FD_BarrettDetail2 3.",
-                        x="FD_BarrettDetail2 4.",
-                        x="FD_BarrettDetail2 5.",
-                        x="FD_BarrettDetail2 6.",
-                        x="FD_BarrettDetail2 7.",
-                        x="FD_BarrettDetail2 8.",
-                        x="FD_BarrettDetail2 9.")
+                        x="Short segment only.")
+FD_BarrettDetail2<-list(x="The segment looked strictured",
+                        x="Subtle nodularity noted near the GOJ.",
+                        x="Ulceration seen at x cm.",
+                        x="Abnormal pit pattern was seen.",
+                        x="LAWS demonstrated at xcm.",
+                        x="Mucosal adherence noted through the length of Barrett's",
+                        x="Paris x noted at x cm",
+                        x="Grossly abnormal vascular pattern at x cm")
 FD_BarrettDetail1<-list(x="FD_BarrettDetail1 1",
                         x="FD_BarrettDetail1 2.",
                         x="FD_BarrettDetail1 3.",
@@ -75,9 +72,9 @@ FD_HiatusDetail<-list(x="HiatusDetail1",
                       x="HiatusDetail3",
                       x="HiatusDetail14")
 
+FD_OesophagitisIntro<-list(x="severe oesophagitis with ulceration.")
+FD_OesophagitisIntro<-ListReplicator("LA Grade ",sample(c("A", "B", "C", "D")),"oesophagitis",FD_OesophagitisIntro)
 
-FD_OesophagitisIntro<-c("severe oesophagitis with ulceration.")
-FD_OesophagitisIntro<-list(unique(append(FD_OesophagitisIntro,replicate(4,paste("LA Grade ",sample(c("A","B","C","D"),replace=F))))))
 
 
 FD_OesophagitisDetail<-list(x="Food present in the oesophagus",
@@ -147,9 +144,10 @@ out<-listtodf(out)
 
 
 
+
+
+
 ################################################################# 2. Primary conditional embellishment #########################################################################################################
-
-
 
 #Assess the sentence so far and use conditional embellishment to add further information:
 
@@ -199,17 +197,18 @@ out<-listtodf(out)
 
 #Randomly replace strings with Normal gastroscopy in them
 #1. Scatter
-out<-flag("Normal gastroscopy to the duodenum.","Barretts",8)
+
+out<-flag("Normal gastroscopy to the duodenum.","Barretts",8,out)
 #2. Vary & detail
 #Flag dispersal-This uses the Barretts flag and then randomly adds variation to that
 out<-IntRanOneElement1("Barretts",FD_BarrettIntro)
 out<-listtodf(out)
-out<-IntRanMultipleElements("Barrett|Columnar lined",FD_BarrettDetail1)
+out<-IntRanMultipleElements("Barrett|Columnar lined",FD_BarrettDetail1_Benign)
 out<-listtodf(out)
 
 ##### 4b. Minority replacement flag Hiatus hernia  #####
 #1. Scatter
-out<-flag("Normal gastroscopy to the duodenum.","Hiatus",8)
+out<-flag("Normal gastroscopy to the duodenum.","Hiatus",8,out)
 #2. Vary: Flag dispersal-This uses the Barretts flag and then randomly adds variation to that &Detail
 out<-IntRanOneElement1("Hiatus",FD_HiatusIntro)
 out<-listtodf(out)
@@ -218,7 +217,7 @@ out<-listtodf(out)
 
 ##### 4c. Minority replacement flag Oesophagitis  #####
 #1. Scatter
-out<-flag("Normal gastroscopy to the duodenum.","Oesophagitis",8)
+out<-flag("Normal gastroscopy to the duodenum.","Oesophagitis",8,out)
 #2. Vary and Detail
 out<-IntRanOneElement1("Oesophagitis",FD_OesophagitisIntro)
 out<-listtodf(out)
@@ -227,7 +226,7 @@ out<-listtodf(out)
 
 ##### 4d. Minority replacement flagInlet patch  #####
 #1. Scatter
-out<-flag("Normal gastroscopy to the duodenum.","Inlet",8)
+out<-flag("Normal gastroscopy to the duodenum.","Inlet",8,out)
 #2. Vary and Detail
 out<-IntRanOneElement1("Inlet",FD_InletIntro)
 out<-listtodf(out)
@@ -236,7 +235,7 @@ out<-listtodf(out)
 
 ##### 4e. Minority replacement flag Eosinophilic  #####
 #1. Scatter
-out<-flag("Normal gastroscopy to the duodenum.","Eosinophilic",8)
+out<-flag("Normal gastroscopy to the duodenum.","Eosinophilic",8,out)
 #2. Vary and Detail
 out<-IntRanOneElement1("Eosinophilic",FD_EosinophilicIntro)
 out<-listtodf(out)
@@ -277,6 +276,14 @@ out<-listtodf(out)
 
 v1<-sample(c(" with", ".It has"), nrow(out), replace = TRUE)
 out<-gsub("\\.\\s*(?=[a-z])", " ", str_replace_all(out[,1], "\\.It has", v1), perl = TRUE)
+out<-listtodf(out)
+
+v1<-sample(c(" was also", "was"), nrow(out), replace = TRUE)
+out<-gsub("\\.\\s*(?=[a-z])", " ", str_replace_all(out[,1], "was", v1), perl = TRUE)
+out<-listtodf(out)
+
+v1<-sample(c(" were also", "were"), nrow(out), replace = TRUE)
+out<-gsub("\\.\\s*(?=[a-z])", " ", str_replace_all(out[,1], "were", v1), perl = TRUE)
 out<-listtodf(out)
 
 v1<-sample(c(" which is", ".\\s*It is"), nrow(out), replace = TRUE)

@@ -1,9 +1,11 @@
 #' listtodf
+#'
 #' Converts the list to a dataframe
 #' @param thelist
 #' @keywords list conversion
 #' @export
 #' @examples
+
 listtodf<-function(thelist){
   thelist<-data.frame(unlist(thelist))
   names(thelist)<-c("out")
@@ -11,18 +13,43 @@ listtodf<-function(thelist){
   return(thelist)
 }
 
+#' ListReplicator
+#'
+#' This creates a list with sampling so you can generate for example a list
+#' with the same sentence but different lengths of things
+#' @param stringToStart
+#' @param sampleList
+#' @param stringToEnd
+#' @param storeList
+#' @keywords
+#' @export
+#' @examples FD_OesophagitisIntro<-list(x="severe oesophagitis with ulceration.")
+#' FD_OesophagitisIntro<-ListReplicator("LA Grade ",sample(c("A", "B", "C", "D")),"oesophagitis",FD_OesophagitisIntro)
+
+
+
+ListReplicator<-function(stringToStart,sampleList,stringToEnd,storeList){
+  repd <- replicate(4, paste(stringToStart, sampleList,stringToEnd))
+  names(repd) <- rep("x", length(repd))
+  long <- append(storeList, as.list(repd))
+  storeList <- long[!duplicated(long)]
+  names(storeList)
+  return(storeList)
+}
+
 #' flag
 #'
 #' @param inputString
 #' @param outputString
 #' @param proportion
+#' @param mydf the dataframe
 #' @keywords
 #' @export
 #' @examples flag("Normal gastroscopy to the duodenum.","Hiatus",8)
 
-flag<-function(inputString,outputString,proportion){
-  out[sample(which(out[,1]==inputString), sum(out[,1]==inputString)/proportion), 1] <- outputString
-  return(out)
+flag<-function(inputString,outputString,proportion,mydf){
+  mydf[sample(which(mydf[,1]==inputString), sum(mydf[,1]==inputString)/proportion), 1] <- outputString
+  return(mydf)
 }
 
 #'Report bulker
