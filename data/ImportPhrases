@@ -1,0 +1,167 @@
+-----------------------------------------------------------------FD_SentenceIntro
+
+Normal gastroscopy to the duodenum.
+-----------------------------------------------------------------FD_SentenceIntro1
+The patient has
+There is
+-----------------------------------------------------------------FD_Object
+a stricture
+an ulcer
+inflammation
+a nodule
+a polyp
+-----------------------------------------------------------------FD_Location
+oesophagus at (cm)
+GOJ
+fundus
+stomach
+body
+antrum
+duodenal bulb
+D1/D2 angle
+second part of the duodenum
+third part of the duodenum
+-----------------------------------------------------------------FD_PolypDescriptors
+stalked.
+sessile.
+-----------------------------------------------------------------FD_UlcerDescriptors
+excavated.
+deep.
+superficial.
+-----------------------------------------------------------------FD_StrictureDescriptors
+circumferential.
+fibrous.
+tight.
+friable
+-----------------------------------------------------------------FD_InflammationDescriptors
+erosive.
+severe.
+mild.
+-----------------------------------------------------------------FD_NoduleDescriptors
+stalked.
+sessile.
+benign-looking.
+-----------------------------------------------------------------FD_UlcerDescSecond
+It is bleeding
+It is not bleeding
+It has rolled edges
+It has a visible vessel
+CLO test was taken
+-----------------------------------------------------------------FD_PolypDescSecond
+It has a normal pit patternIt has an abnormal pit pattern
+-----------------------------------------------------------------FD_StrictureDescSecond
+It will not allow the scope to passIt is easily traversible
+-----------------------------------------------------------------FD_BarrettIntro
+The patient has Barrett's oesophagus
+Columnar lined oesophagus is present
+Barrett's is present
+-----------------------------------------------------------------FD_BarrettDetail1_Decsrip
+The segment looks flat.
+Prague score C0M3
+It is x cm in length.
+This is an ultra-short segment.
+-----------------------------------------------------------------FD_BarrettDetail1_Benign
+The segment looks flat.
+No nodularity is present.
+It is a long segment.
+Some areas of vascular abnormalities are seen.
+The pit pattern is normal.
+No abnormal pit pattern is seen.
+Oesophagitis was present.
+No loss of aceto-whitening was seen.
+Gastric mucosal prolapse seen.
+Short segment only.
+-----------------------------------------------------------------FD_BarrettDetail2
+The segment looked strictured
+Subtle nodularity noted near the GOJ.
+Ulceration seen at x cm.
+Abnormal pit pattern was seen.
+LAWS demonstrated at xcm.
+Mucosal adherence noted through the length of Barrett's
+Paris x noted at x cm
+Grossly abnormal vascular pattern at x cm
+-----------------------------------------------------------------FD_BarrettDetail1
+FD_BarrettDetail1 1
+FD_BarrettDetail1 2.
+FD_BarrettDetail1 3.
+FD_BarrettDetail1 4.
+FD_BarrettDetail1 5.
+FD_BarrettDetail1 6.
+FD_BarrettDetail1 7.
+FD_BarrettDetail1 8.
+FD_BarrettDetail1 9.
+-----------------------------------------------------------------FD_HiatusIntro
+A large hiatus hernia is present
+Small hiatus hernia only
+Large sliding hiatus hernia
+Likely paraoesophageal hernia present
+He had two visible vessels just distal to the GOJ, withina hiatus hernia.
+Hiatus hernia .
+Hiatus Hernia- Large.
+Hiatus Hernia- Small.
+Hiatus hernia.
+Lax cardia with small hiatus hernia
+No evidence of hiatus hernia.
+No hiatus hernia identified.
+No Hiatus hernia.
+No hiatus hernia.
+No hiatus hernia; fundoplication intact; CLO test done.
+Oesophagus - Small hiatus hernia.
+Oesophagus- Hiatus hernia seen.
+Oesophagus normal with no hiatus hernia.
+OESOPHAGUS: Normal apart from small hiatus hernia.
+OESOPHAGUS: Normal, no appreciable hiatus hernia.
+OESOPHAGUS: small hiatus hernia.
+On retroflexion the wrap is in correct position, with no evidence of recurrent hiatus hernia.
+Previous OGD showed LA grade C reflux oesophagitis above a hiatus hernia and gastroduodenitis.
+Small hiatus hernia only.
+Small hiatus hernia.
+-----------------------------------------------------------------FD_OesophagitisIntro
+Inflammatory changes seen in the oesophagus
+-----------------------------------------------------------------FD_OesophagitisDetail
+Food present in the oesophagus
+Gastric mucosal prolapse also seen
+The lower oesopahgeal sphincter looks widely patent
+The oesopahgitis is consistent with acid reflux.
+severe oesophagitis with ulceration.
+Candida present.
+-----------------------------------------------------------------FD_InletIntro
+Inlet patch seen on withdrawal.
+At 18cm two inlet patches were seen.
+No inlet patch was seen on narrow band imaging.
+No inlet patch was seen.
+No inlet patch.
+No cervical inlet patch.
+As an incidental finding she also has a cervical inlet patch.
+Inlet patch - Yes
+No evidence of inlet patch on careful inspection.
+There is a cervical inlet patch of dubious significance.
+-----------------------------------------------------------------FD_EosinophilicIntro
+Linear furrowing is present
+Several white exudates were seen
+Multiple white exudates throughout the oesophagus resembling candida but could be food debris.
+Pull sign was demonstrated.
+The patient had crepe paper oesophagitis
+Rings were seen throughout the oesophagus
+The lumen was tight
+Trachealisation of oesophagus.
+mild trachealization.
+Not the most convincing oesophageal trachealisation
+-----------------------------------------------------------------FD_EosinophilicDetail
+EoEBoo1
+EoEBoo2
+EoEBoo3
+EoEBo4
+EoEBoo5
+EoEBo06
+-----------------------------------------------------------------FD_Dilatation
+The stricture will need to be dilatated in radiology
+A superficial mucosal tear was seen after dilatation
+A deep mucosal tear was seen after dilatation
+-----------------------------------------------------------------FD_DilatationDetails
+A superficial mucosal tear was seen after dilatation
+A deep mucosal tear was seen after dilatation
+-----------------------------------------------------------------FD_ContinuityAdditionals
+The patient also
+In addition the patient also
+-----------------------------------------------------------------END

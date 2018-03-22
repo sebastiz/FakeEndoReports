@@ -23,7 +23,7 @@ listtodf<-function(thelist){
 #' @param storeList
 #' @keywords
 #' @export
-#' @examples FD_OesophagitisIntro<-list(x="severe oesophagitis with ulceration.")
+#' @examples FD_OesophagitisIntro<-list(Sx="severe oesophagitis with ulceration.")
 #' FD_OesophagitisIntro<-ListReplicator("LA Grade ",sample(c("A", "B", "C", "D")),"oesophagitis",FD_OesophagitisIntro)
 
 
@@ -37,18 +37,42 @@ ListReplicator<-function(stringToStart,sampleList,stringToEnd,storeList){
   return(storeList)
 }
 
+#' ListContstructor
+#'
+#' @param string1 the start delimiter
+#' @param string2 the end delimiter
+#' @param textfile imported text file
+#' @keywords
+#' @export
+#' @examples #Import the text file first
+#' FD_PolypDescriptors<-ListContstructor("FD_PolypDescriptors","FD_UlcerDescriptors",FINDINGS)
+
+ListContstructor<-function(string1,string2,textfile){
+  #Add all the extra hyphens in that make the text file more readable
+  conStart<-paste0(paste0(replicate(65,"-"),collapse = '')
+                   ,string1)
+  conEnd<-paste0(paste0(replicate(65,"-"),collapse = '')
+                 ,string2)
+  #Find the delimiters by whichihn the index
+  start <- which(textfile==conStart)+1
+  end <- which(textfile==conEnd)-1
+  return(textfile[start:end])
+}
+
 #' flag
 #'
 #' @param inputString
 #' @param outputString
 #' @param proportion
+#' @param sampleList the sample list for intro for that disease
 #' @param mydf the dataframe
 #' @keywords
 #' @export
 #' @examples flag("Normal gastroscopy to the duodenum.","Hiatus",8)
 
-flag<-function(inputString,outputString,proportion,mydf){
+flag<-function(inputString,outputString,proportion,sampleList,mydf){
   mydf[sample(which(mydf[,1]==inputString), sum(mydf[,1]==inputString)/proportion), 1] <- outputString
+  mydf<-IntRanOneElement1(outputString,sampleList,mydf)
   return(mydf)
 }
 
@@ -59,12 +83,10 @@ flag<-function(inputString,outputString,proportion,mydf){
 #' @param inputString
 #' @keywords cats
 #' @export
-#' @examples
-#' bulker()
+#' @examples bulker()
 
 bulker <- function(inputString){
   apply(out, 1, function(x) {
-
     #If you get a match for the following
     if (stringr::str_detect(x, inputString)) {
       #Then store that match
@@ -83,7 +105,6 @@ bulker <- function(inputString){
       return(x)
     }
   })
-  out<-listtodf(out)
 }
 
 #'Internally relevant detail adder - interpolate
@@ -91,12 +112,13 @@ bulker <- function(inputString){
 #' This adds the detail to a report based on the input string (ie based on the flag)
 #' @param inputString
 #' @param listtoSample
+#' @param mydf the dataframe
 #' @keywords cats
 #' @export
 #' @examples IntRanOneElement1()
 
-IntRanOneElement1 <- function(inputString,listtoSample){
-  out<-apply(out, 1, function(x) {
+IntRanOneElement1 <- function(inputString,listtoSample,mydf){
+  mydf<-apply(mydf, 1, function(x) {
     if (stringr::str_detect(x, inputString)) {
       ret<-paste0(sample(listtoSample,1,replace=T),".")
       return(ret)
@@ -104,9 +126,9 @@ IntRanOneElement1 <- function(inputString,listtoSample){
     else {
       return(x)
     }
-    out<-listtodf(out)
+    mydf<-listtodf(mydf)
   })
-  out<-listtodf(out)
+  mydf<-listtodf(mydf)
 }
 
 #'Internally relevant detail adder with extra phrase- interpolate
@@ -198,3 +220,5 @@ RandomSingleGsub<-function(phraseToReplace,listOfReplacements){
   })
   out<-listtodf(out)
 }
+
+
