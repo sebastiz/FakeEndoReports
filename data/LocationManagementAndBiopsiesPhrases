@@ -1,33 +1,87 @@
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
------------------------------------------------------------------FD_Location
-
+-----------------------------------------------------------------FD_StomachPolypDescriptors
+The gastric polyp looks fundic.
+The gastric polyp looks malignant.
+The gastric polyp looks adenomatous.
+The gastric polyp looks hyperplastic.
+-----------------------------------------------------------------FD_StomachUlcerDescriptors
+The gastric ulcer looks malignant.
+The ulceration is severe and there are multiple areas affected.
+The ulceration is likely NSAID related.
+Ulceration is likely Helicobacter pylori related.
+-----------------------------------------------------------------FD_StomachStrictureDescriptors
+The stricture is relative to the stomach body.
+The is the impression of extrinsic compression but in fact the stricture is likely mucosal.
+-----------------------------------------------------------------FD_StomachInflammationDescriptors
+The inflammatory changes are likely to be Helicobacter related.
+Portal hypertensive gastropathy is likely responsible for the inflammatory changes.
+The inflammation is in an odd distribution.
+-----------------------------------------------------------------FD_StomachNoduleDescriptors
+The nodular changes may represent early fundic gland polyps.
+The nodules have an abnormal pit pattern and may represent an early gastric cancer.
+-----------------------------------------------------------------FD_OesophagealPolypDescriptors
+The regularity of the nodular areas suggests that they are regenerative
+oesophagus at (cm).
+The polypoid lesion looks postinflammatory.
+The stalked nature of the polyp makes it amenable to a polypectomy rather than EMR.
+The lesion is classifiable as Paris IIa.
+This is a Paris IIa/c lesion.
+This is a Paris IIb lesion.
+Closer examination of the lesion is necessary +/- EUS.
+-----------------------------------------------------------------FD_OesophagealUlcerDescriptors
+The ulceration was semi circumferential.
+The ulceration is suspicious for an adenocarcinoma.
+The ulceration is likely to be a refulx oesophagitis.
+The ulceration and its position is suggestive of a pill oesophagitis.
+-----------------------------------------------------------------FD_OesophagealStrictureDescriptors
+The stricture is likely malignant.
+This is suggestive of eosinophillic oesophagitis.
+-----------------------------------------------------------------FD_OesophagealInflammationDescriptors
+The oesophageal inflammation is non-descript.
+The inflammation may be acid reflux related.
+-----------------------------------------------------------------FD_OesophagealNodularDescriptors
+Regenerative change most likely explains the nodular changes.
+The nodular area is a Paris IIa/c lesion.
+This is a Paris IIb lesion.
+-----------------------------------------------------------------FD_DuodenumPolypDescriptors
+The duodenal lesion looks like an adenoma.
+-----------------------------------------------------------------FD_DuodenumUlcerDescriptors
+The ulcer is likely Helicobacter related.
+THe ulcer looks like an invasive lesion.
+THe distribution of ulceration suggests a lymphomatous lesion.
+-----------------------------------------------------------------FD_DuodenumStrictureDescriptors
+The duodenal stricture is likely related to previous ulceration
+The stricture may need stenting eventually.
+Likely Crohn's related stricturing
+The stricture feels fibrotic
+-----------------------------------------------------------------FD_DuodenumInflammationDescriptors
+The duodenitis is likely to heal with PPI therapy.
+The duodenitis is likely to heal spontaneously.
+-----------------------------------------------------------------FD_DuodenumNodularDescriptors
+The nodularity in the duodenum is likely a healing duodenitis
+The nodularity is associated with scalloping and suggests a coeliac disease
+-----------------------------------------------------------------FD_PolypBiopsies
+The polyp was biopsied
+The polyp was resected by EMR
+The polyp was tatooed
+The polyp was too large to resect
+-----------------------------------------------------------------FD_UlcerBiopsies
+The ulcer was biopsied x8.
+The ulcer will be rebiopsied at the next endoscopy.
+Biopsies were difficult to take as hard tissue.
+Bleeding on biopsy.
+-----------------------------------------------------------------FD_StrictureBiopsies
+The stricture was biopsied x8.
+The stricture will be rebiopsied at the next endoscopy.
+Biopsies were difficult to take as hard tissue.
+Bleeding on biopsy.
+-----------------------------------------------------------------FD_InflammationBiopsies
+The inflammation was biopsied x8.
+The inflammation will be rebiopsied at the next endoscopy.
+Biopsies were difficult to take as hard tissue.
+Bleeding on biopsy.
+-----------------------------------------------------------------FD_NoduleBiopsies
+The nodular area was biopsied x8.
+The nodule will be rebiopsied at the next endoscopy.
+Biopsies were difficult to take as hard tissue.
+Bleeding on biopsy.
+-----------------------------------------------------------------END

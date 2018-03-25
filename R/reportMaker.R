@@ -53,7 +53,7 @@ ListContstructor<-function(string1,string2,textfile){
                    ,string1)
   conEnd<-paste0(paste0(replicate(65,"-"),collapse = '')
                  ,string2)
-  #Find the delimiters by whichihn the index
+  #Find the delimiters by which is in the index
   start <- which(textfile==conStart)+1
   end <- which(textfile==conEnd)-1
   return(textfile[start:end])
@@ -118,7 +118,7 @@ bulker <- function(inputString){
 #' @examples IntRanOneElement1()
 
 IntRanOneElement1 <- function(inputString,listtoSample,mydf){
-  mydf<-apply(mydf, 1, function(x) {
+  apply(mydf, 1, function(x) {
     if (stringr::str_detect(x, inputString)) {
       ret<-paste0(sample(listtoSample,1,replace=T),".")
       return(ret)
@@ -126,7 +126,6 @@ IntRanOneElement1 <- function(inputString,listtoSample,mydf){
     else {
       return(x)
     }
-    mydf<-listtodf(mydf)
   })
   mydf<-listtodf(mydf)
 }
@@ -215,10 +214,19 @@ IntRanMultipleElements <- function(inputString,listtoSample){
 #' @export
 #' @examples RandomSingleGsub()
 RandomSingleGsub<-function(phraseToReplace,listOfReplacements){
-  out<-apply(out, 1, function(x) {
+  apply(out, 1, function(x) {
     gsub(phraseToReplace,  paste0(x,sample(listOfReplacements,1,replace=F)),x)
   })
   out<-listtodf(out)
 }
 
-
+LocationAndBiopsy<-function(x,regString1,listString1,listString2,source,biopsyListString1,biopsyListString2){
+  if (stringr::str_detect(x, paste0(regString1))){
+    sampleDescriptorList<-ListContstructor(listString1,listString2,source)
+    ff<-paste(x,sample(sampleDescriptorList,1,replace=F))
+    sampleBiopsyList<-ListContstructor(biopsyListString1,biopsyListString2,source)
+    return(paste0(ff, sample(sampleDescriptorList,1,replace=F),sample(sampleBiopsyList,1,replace=F),"."))
+  }else {
+    return(x)
+  }
+}

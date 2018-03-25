@@ -5,11 +5,11 @@ Normal gastroscopy to the duodenum.
 The patient has
 There is
 -----------------------------------------------------------------FD_Object
-a stricture
-an ulcer
-inflammation
-a nodule
-a polyp
+ a stricture
+ an ulcer
+ inflammation
+ a nodule
+ a polyp
 -----------------------------------------------------------------FD_Location
 oesophagus at (cm)
 GOJ
@@ -32,7 +32,7 @@ superficial.
 circumferential.
 fibrous.
 tight.
-friable
+friable.
 -----------------------------------------------------------------FD_InflammationDescriptors
 erosive.
 severe.
@@ -46,11 +46,20 @@ It is bleeding
 It is not bleeding
 It has rolled edges
 It has a visible vessel
-CLO test was taken
+CLO test was taken.
+Forrest Ulcer classification: IIc.
+Forrest Ulcer classification:II B.
 -----------------------------------------------------------------FD_PolypDescSecond
-It has a normal pit patternIt has an abnormal pit pattern
+It has a normal pit pattern
+It has an abnormal pit pattern
 -----------------------------------------------------------------FD_StrictureDescSecond
-It will not allow the scope to passIt is easily traversible
+It will not allow the scope to pass.
+It is easily traversible.
+Scope not held by stricture
+The endoscope passed through the stricture with resistance
+There is very slight and non-restrcitve stricturing.
+Tight distal stricture which would not allow passage of scope.
+Tight stricture impassable with scope.
 -----------------------------------------------------------------FD_BarrettIntro
 The patient has Barrett's oesophagus
 Columnar lined oesophagus is present

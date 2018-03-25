@@ -52,21 +52,12 @@ FD_DilatationDetails<-ListContstructor("FD_DilatationDetails","FD_ContinuityAddi
 FD_ContinuityAdditionals<-ListContstructor("FD_ContinuityAdditionals","END",FINDINGS)
 
 
-##########################################################################################################################################################################
-
-#Develop a function here that extracts according to regular expression from the data list.
-#Something like, if you want Barrett's with dysplasia '
-
-
-
 #Select out the strings with certain keywords but in any order
 #Also get rid of any strings with numbers in them
 
 Hiat<-data.frame(FINDINGS[grepl("[Tt]rache",FINDINGS$x),])
 names(Hiat)<-"x"
 Hiat<-Hiat[!grepl(".*\\d+.*",Hiat$x),]
-
-
 
 
 
@@ -82,13 +73,6 @@ out <- apply(FD1, 1, function(x) {
   }
 })
 out<-listtodf(out)
-##########################################################################################################################################################################
-
-
-
-
-
-
 
 ################################################################# 2. Primary conditional embellishment #########################################################################################################
 
@@ -123,7 +107,7 @@ out <- apply(out, 1, function(x) {
 })
 
 out<-listtodf(out)
-##########################################################################################################################################################################
+
 
 
 
@@ -139,7 +123,8 @@ out<-listtodf(out)
 ##### 4a. Minority replacement flag - Barretts
 
 #Randomly replace strings with Normal gastroscopy in them
-#1. Scatter
+#1. Scatter- Normal findings are changed proportionately to Barrett's intro
+#lines
 
 out<-flag("Normal gastroscopy to the duodenum.","Barretts",8,FD_BarrettIntro,out)
 #2. Vary & detail
@@ -165,7 +150,7 @@ out<-listtodf(out)
 #1. Scatter
 out<-flag("Normal gastroscopy to the duodenum.","Inlet",8,FD_InletIntro,out)
 #2. Vary and Detail
-out<-IntRanOneElement1("Inlet",FD_InletIntro)
+out<-IntRanOneElement1("Inlet",FD_InletIntro,out)
 out<-listtodf(out)
 
 
@@ -175,16 +160,6 @@ out<-flag("Normal gastroscopy to the duodenum.","Eosinophilic",8,FD_Eosinophilic
 #2. Vary and Detail
 out<-IntRanMultipleElements("exudates|Pull|crepe|Rings|tight",FD_EosinophilicDetail)
 out<-listtodf(out)
-
-##########################################################################################################################################################################
-
-
-
-
-
-
-
-
 
 
 ############################################################## 5. Additional diagnoses functions ######################################################################################
@@ -203,7 +178,6 @@ out<-listtodf(out)
 # - if word present from the list then store the word
 # then choose a report from the dataframe not containing that word at random
 # then paste that report into the current report.
-
 
 ##### 6. Conjunction functions #####
 #If there is an 'It, ot 'This is', then replace it with an and but do so randomly - random gsubbing
@@ -232,44 +206,69 @@ v1<-sample(c(" and will", ".It will"), nrow(out), replace = TRUE)
 out<-gsub("\\.\\s*(?=[a-z])", " ", str_replace_all(out[,1], "\\.It will", v1), perl = TRUE)
 out<-listtodf(out)
 
+v1<-sample(c("\nThe patient also has", "\nThe patient has"), nrow(out), replace = TRUE)
+out<-gsub("\\.\\s*(?=[a-z])", " ", str_replace_all(out[,1], "\\.It will", v1), perl = TRUE)
+out<-listtodf(out)
+
 #Further continuity phrases to be randomly placed: Random single replacement
 out<-RandomSingleGsub("\nThe patient",FD_ContinuityAdditionals)
+out<-listtodf(out)
 
 ##### 7. Therapy functions #####
 #Therapy types
 #1) Polyp 2) RFA and EMR 3) Dilatation - oesophageal and stricture mentioned
 
 #This has to be based on conditionals from the existing text.
-out<-IntRanOneElement1("(oesophagus .* stricture)|(stricture .* oesophagus)",FD_Dilatation)
+out<-IntRanOneElement1("(oesophagus .* stricture)|(stricture .* oesophagus)",FD_Dilatation,out)
+out<-listtodf(out)
 
-##########################################################################################################################################################################
+##### Location specific functions for management, biopsies and further details ########################################
+
+#Import the list of phrases for sentence construction
+LOCATION_BIOPSES <- readLines("/home/rstudio/FakeEndoReports/data/LocationManagementAndBiopsiesPhrases")
+LOCATION_BIOPSES<-gsub("\"","",LOCATION_BIOPSES)
+names(LOCATION_BIOPSES) <- rep("x", length(LOCATION_BIOPSES))
+LOCATION_BIOPSES <- as.list(LOCATION_BIOPSES)
 
 
+out <- apply(out, 1, function(x) {
+
+  #Stomach Location and Biopsies
+  LocationAndBiopsy(x,"polyp.*(stomach|antrum|body|fundus).*\\.","FD_StomachPolypDescriptors","FD_StomachUlcerDescriptors",LOCATION_BIOPSES,
+                        "FD_PolypBiopsies","FD_UlcerBiopsies")
+  LocationAndBiopsy(x,"ulcer.*(stomach|antrum|body|fundus)*\\.","FD_StomachUlcerDescriptors","FD_StomachStrictureDescriptors",LOCATION_BIOPSES,
+                        "FD_UlcerBiopsies","FD_StrictureBiopsies")
+  LocationAndBiopsy(x,"stricture.*(stomach|antrum|body|fundus).*\\.","FD_StomachStrictureDescriptors","FD_StomachInflammationDescriptors",LOCATION_BIOPSES,
+                        "FD_StrictureBiopsies","FD_InflammationBiopsies")
+  LocationAndBiopsy(x,"inflammation.*(stomach|antrum|body|fundus).*\\.","FD_StomachInflammationDescriptors","FD_StomachNoduleDescriptors",LOCATION_BIOPSES,
+                        "FD_InflammationBiopsies","FD_NoduleBiopsies")
+  LocationAndBiopsy(x,"nodul.*(stomach|antrum|body|fundus).*\\.","FD_StomachNoduleDescriptors","FD_OesophagealPolypDescriptors",LOCATION_BIOPSES,
+                        "FD_NoduleBiopsies","END")
 
 
-##### Location specific functions for management, biopsies and further details#####
+  #Oesophagus and GOJ Location and Biopsies
+  LocationAndBiopsy(x,"polyp.*(GOJ|oesophagus).*\\.","FD_OesophagealPolypDescriptors","FD_OesophagealUlcerDescriptors",LOCATION_BIOPSES,
+                        "FD_PolypBiopsies","FD_UlcerBiopsies")
+  LocationAndBiopsy(x,"ulcer.*(GOJ|oesophagus).*\\.","FD_OesophagealUlcerDescriptors","FD_OesophagealStrictureDescriptors",LOCATION_BIOPSES,
+                        "FD_UlcerBiopsies","FD_StrictureBiopsies")
+  LocationAndBiopsy(x,"stricture.*(GOJ|oesophagus).*\\.","FD_OesophagealStrictureDescriptors","FD_OesophagealInflammationDescriptors",LOCATION_BIOPSES,
+                        "FD_StrictureBiopsies","FD_InflammationBiopsies")
+  LocationAndBiopsy(x,"inflammation.*(GOJ|oesophagus).*\\.","FD_OesophagealInflammationDescriptors","FD_OesophagealNodularDescriptors",LOCATION_BIOPSES,
+                        "FD_InflammationBiopsies","FD_NoduleBiopsies")
+  LocationAndBiopsy(x,"nodul.*(GOJ|oesophagus).*\\.","FD_OesophagealNodularDescriptors","FD_OesophagealPolypDescriptors",LOCATION_BIOPSES,
+                        "FD_NoduleBiopsies","END")
 
-out2 <- apply(out, 1, function(x) {
-  if (stringr::str_detect(x, "polyp.*(stomach|antrum).*\\.")) {
-      FD_StomchPolypDescriptors<-list(x="The gastric polyp looks fundic",x='The gastric polyp looks malignant',x='The gastric polyp looks adenomatous',x='The gastric polyp looks hyperplastic')
-    polypff<-paste(x,sample(FD_StomchPolypDescriptors,1,replace=F))
-    FD_StomchPolypBiopses<-list(x="The polyp was biopsied",x='The polyp was resected by EMR',x='The polyp was tatooed',x='The polyp was too large to resect')
-    return(paste0(polypff, sample(FD_PolypDescSecond,1,replace=F),sample(FD_StomchPolypBiopses,1,replace=F),"."))
-  }
-  else {
-    return(x)
-  }
+  #Duodenum  Location and Biopsies
+  LocationAndBiopsy(x,"polyp.*duod.*\\.","FD_DuodenumPolypDescriptors","FD_DuodenumUlcerDescriptors",LOCATION_BIOPSES,
+                        "FD_PolypBiopsies","FD_UlcerBiopsies")
+  LocationAndBiopsy(x,"ulcer.*duod.*\\.","FD_DuodenumUlcerDescriptors","FD_DuodenumStrictureDescriptors",LOCATION_BIOPSES,
+                        "FD_UlcerBiopsies","FD_StrictureBiopsies")
+  LocationAndBiopsy(x,"stricture.*duod.*\\.","FD_DuodenumStrictureDescriptors","FD_DuodenumInflammationDescriptors",LOCATION_BIOPSES,
+                        "FD_StrictureBiopsies","FD_InflammationBiopsies")
+  LocationAndBiopsy(x,".*inflammation.*\\.","FD_DuodenumInflammationDescriptors","FD_DuodenumNodularDescriptors",LOCATION_BIOPSES,
+                        "FD_InflammationBiopsies","FD_NoduleBiopsies")
+  LocationAndBiopsy(x,".*nodul.*\\.","FD_DuodenumNodularDescriptors","FD_PolypBiopsies",LOCATION_BIOPSES,
+                        "FD_NoduleBiopsies","END")
 })
 
-
-out2<-listtodf(out2)
-
-
-
-###################################################################### 8. Biopsy functions ##################################################################################
-
-
-##### 8. Biopsy functions #####
-
-#Pick the segment that you want to biopsy then vary the number of biopsies taken from each. Also vary the phrase.
-#if not Normal endoscopy #Biopsies were taken. #Biopsies were taken from the <segment>
+out<-listtodf(out)
