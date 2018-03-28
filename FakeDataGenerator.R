@@ -9,7 +9,6 @@ FINDINGS<-gsub("\"","",FINDINGS)
 names(FINDINGS) <- rep("x", length(FINDINGS))
 FINDINGS <- as.list(FINDINGS)
 
-
 ##### LISTS- Sentence introduction #####
 # Distribute the reports so that there are empties and Normals
 FD_SentenceIntro<-ListContstructor("FD_SentenceIntro","FD_SentenceIntro1",FINDINGS)

@@ -73,6 +73,7 @@ ListContstructor<-function(string1,string2,textfile){
 flag<-function(inputString,outputString,proportion,sampleList,mydf){
   mydf[sample(which(mydf[,1]==inputString), sum(mydf[,1]==inputString)/proportion), 1] <- outputString
   mydf<-IntRanOneElement1(outputString,sampleList,mydf)
+  mydf<-listtodf(mydf)
   return(mydf)
 }
 
@@ -127,7 +128,6 @@ IntRanOneElement1 <- function(inputString,listtoSample,mydf){
       return(x)
     }
   })
-  mydf<-listtodf(mydf)
 }
 
 #'Internally relevant detail adder with extra phrase- interpolate
@@ -222,10 +222,13 @@ RandomSingleGsub<-function(phraseToReplace,listOfReplacements){
 
 LocationAndBiopsy<-function(x,regString1,listString1,listString2,source,biopsyListString1,biopsyListString2){
   if (stringr::str_detect(x, paste0(regString1))){
+    #Get the list from the phrases text
     sampleDescriptorList<-ListContstructor(listString1,listString2,source)
     ff<-paste(x,sample(sampleDescriptorList,1,replace=F))
+    #Get the biopsies list from the phrases text
     sampleBiopsyList<-ListContstructor(biopsyListString1,biopsyListString2,source)
-    return(paste0(ff, sample(sampleDescriptorList,1,replace=F),sample(sampleBiopsyList,1,replace=F),"."))
+    t<-paste0(ff,sample(sampleBiopsyList,1,replace=F),".")
+    return(t)
   }else {
     return(x)
   }
