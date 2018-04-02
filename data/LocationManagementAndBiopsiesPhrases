@@ -62,8 +62,10 @@ The nodularity is associated with scalloping and suggests a coeliac disease.
 -----------------------------------------------------------------FD_PolypBiopsies
 The polyp was biopsied.
 The polyp was resected by EMR.
+The polyp was resected by ESD.
 The polyp was tatooed.
 The polyp was too large to resect.
+The polyp did not lift on injection with normal saline and was therefore not resected
 -----------------------------------------------------------------FD_UlcerBiopsies
 The ulcer was biopsied x8.
 The ulcer will be rebiopsied at the next endoscopy.
