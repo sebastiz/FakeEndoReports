@@ -69,14 +69,15 @@ Hiat<-Hiat[!grepl(".*\\d+.*",Hiat$x),]
 FD1<-data.frame(paste0(replicate(1000,sample(FD_SentenceIntro,1,replace=F)),""))
 
 #Fill out the non-normal endoscopies with macroscopic findings
-out <- apply(FD1, 1, function(x) {
+out <- data.frame(apply(FD1, 1, function(x) {
   if (stringr::str_detect(x, "Normal")) {
     return(x)
   } else {
     return(paste0(sample(FD_SentenceIntro1,1,replace=F),sample(FD_Object,1,replace=F)," in the ",sample(FD_Location,1,replace=F),"."))
   }
-})
+}))
 out<-listtodf(out)
+
 
 ################################################################# 2. Macro Conditional embellishment  ########################################################################
 #Conditional embellishment based on  macroscopic observations
@@ -118,6 +119,7 @@ out<-listtodf(out)
 
 #Extra tidup to allow cm to be added for oesophageal lesions to give distance:
 out$out<- lapply(out$out, function(x)gsub("oesophagus at",paste0("oesophagus at ",sample(22:41)," cm"),x))
+out<-listtodf(out)
 
 
 
@@ -218,7 +220,8 @@ out<-listtodf(out)
 out<-RandomSingleGsub("\nThe patient",FD_ContinuityAdditionals)
 out<-listtodf(out)
 
-
+#Extract the compartment for pathology later
+Compartment<-str_extract_all(out$out, "Columnar|Barrett|stomach|antrum|body|fundus|GOJ|oesophag|oesophagitis|duod|D1|inlet|hernia")
 ############################################################## 6. Location specific functions for management, biopsies and further details ################################
 
 #The principle here is a. Add the endoscopist's impression of the possible diagnosis based on the lesion and location and b.) Add details about which biopsies were taken.
@@ -335,7 +338,13 @@ out<-listtodf(out)
   })
   out<-listtodf(out)
 
+  #Start to extract elements necessary for the pathology report:
+  pathreport<-ifelse(grepl(".*[Bb]iops.*",out$out),"WritePathReport",NA)
 
+  #Create the number of biopsies taken
+  NumberBiopsies<-str_extract_all(out$out, paste("biopsied x[0-9]{1,2}", sep = ""))
+  #out$Bx<-paste(out$pathreport,out$NumberBiopsies,out$Compartment)
+  out<-listtodf(out)
 
   # a. Bulking
   #Other diagnoses of relevance
@@ -343,8 +352,12 @@ out<-listtodf(out)
   #This can be done by assessing which compartment has already been examined and then choosing and rearranging a report from another report
   # Create a list of compartments and also disease specific keywords.
 
+  out<-paste(out$out,"COMPARTMENT_START",Compartment,"BIOPSIES TAKEN:", pathreport,"NUMBER OF BIOPSIES:",NumberBiopsies,"COMPARTMENT_END")
+  out<-listtodf(out)
+
   out<-bulker("GOJ|fundus|oesophag|stomach body|duodenal bulb|antrum|second part of the duodenum|third part of the duodenum")
   out<-listtodf(out)
+
 
 
 
@@ -365,14 +378,39 @@ out$out<-as.character(out$out)
 out<-IntRanOneElement1("(oesophagus .* stricture)|(stricture .* oesophagus)",FD_Dilatation,out)
 out<-listtodf(out)
 
+############################################################## 9. Endocsopy indication #######################################################################################
+#Import the list of phrases for sentence construction
+INDICATIONS <- readLines("/home/rstudio/FakeEndoReports/data/OGDIndication.txt")
+INDICATIONS<-gsub("\"","",INDICATIONS)
+names(INDICATIONS) <- rep("x", length(INDICATIONS))
+INDICATIONS <- as.list(INDICATIONS)
+FD_Indication<-ListContstructor("START","END",INDICATIONS)
+Indic<-paste0(replicate(1000,sample(FD_Indication,1,replace=F)),"")
 
+#Merge the Indication in to the Pathology report:
+out$out<-paste0("INDICATIONS FOR PROCEDURE: ",Indic," FINDINGS: ",out$out)
+out<-listtodf(out)
+############################################################## 10. Pathology functions #######################################################################################
+#
+pathReport<-str_extract_all(out$out,"COMPARTMENT_START.*COMPARTMENT_END")
 
-############################################################## 9. Pathology functions #######################################################################################
-#
-# #Need to examine each sentence to determine whether biopsy taken from that compartment and if any number taken
-# NATURE OF SPECIMEN:
-#   x2 right colon bx, x 2 left colon bx.
-#
+dff<-str_extract_all(as.character(pathReport),"COMPARTMENT_START.*BIOPSIES TAKEN:")
+dff2<-lapply(dff,function(x) paste(x,collapse=','))
+dff3<-data.frame(gsub("COMPARTMENT_START .* BIOPSIES TAKEN: NA NUMBER OF BIOPSIES: character.*COMPARTMENT_END","",dff2))
+names(dff3)<-"report"
+dff3$report<-gsub("BIOPSIES TAKEN:","biopsies taken",dff3$report)
+dff3$report<-gsub(", ","",dff3$report)
+
+library(gsubfn)
+dff3$report<-gsubfn("(COMPARTMENT_START)", function(x) paste0("x", sample(3:10, 1)), dff3$report)
+dff3$report<-gsub("\"","",dff3$report)
+dff3$WritePathReport<-ifelse(grepl("WritePathReport",dff3$report),paste(str_extract(dff3$report,"\\d+.*taken")),"")
+dff3$report<-gsub("WritePathReport NUMBER OF BIOPSIES: character\\(0\\) COMPARTMENT_ENDx","\nx",dff3$report)
+dff3$report<-paste0("Nature of specimen:",dff3$report)
+
+#Compartment specific pathology
+#Create the compartment list components then if that compartment present then create the path report for that compartment
+
 # #Need compartment specific indication- can get from the endoscopic indication when this is done
 # CLINICAL DETAILS
 # Alternating diarrhoea and constipation ? microscopic colitis.
@@ -409,9 +447,6 @@ out<-listtodf(out)
 #NATURE OF SPECIMEN: Derived from the section about whether biopsies taken
 
 #Create the report:  Rule: If biopsies taken and not negative then use create pathology reports:
-out$pathreport<-ifelse(grepl(".*iopsi.*",out$out),"WritePathReport",NA)
-#Create the number of biopsies taken
-out$NumberBiopsies<-str_extract_all(out$out, paste("biopsied x[0-9]{1,2}", sep = ""))
 
 # Rule: If number of biopsies mentioned in endoscopic findings then use this otherwise make up
 # Rule: The biopsy compartment is derived from the sentence
