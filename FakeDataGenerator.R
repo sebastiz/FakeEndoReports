@@ -410,7 +410,69 @@ dff3$report<-paste0("Nature of specimen:",dff3$report)
 
 #Compartment specific pathology
 #Create the compartment list components then if that compartment present then create the path report for that compartment
+#Import the list of phrases for sentence construction
+PATH_DUODENUM <- readLines("/home/rstudio/FakeEndoReports/data/Path_Duodenum.txt")
+PATH_DUODENUM<-gsub("\"","",PATH_DUODENUM)
+names(PATH_DUODENUM) <- rep("x", length(PATH_DUODENUM))
+PATH_DUODENUM <- as.list(PATH_DUODENUM)
 
+FD_DuodenumConclusion<-ListContstructor("Conclusion","Conclusion_CD",PATH_DUODENUM)
+FD_DuodenumConclusion_CD<-ListContstructor("Conclusion_CD","Conclusion_Normal",PATH_DUODENUM)
+FD_DuodenumConclusion_Normal<-ListContstructor("Conclusion_Normal","Conclusion2",PATH_DUODENUM)
+FD_DuodenumConclusion2<-ListContstructor("Conclusion2","Description",PATH_DUODENUM)
+FD_DuodenumDescription<-ListContstructor("Description","Description_IELs",PATH_DUODENUM)
+FD_DuodenumDescription_IELs<-ListContstructor("Description_IELs","Description_Inflammation",PATH_DUODENUM)
+FD_DuodenumDescription_Inflammation<-ListContstructor("Description_Inflammation","Description_List",PATH_DUODENUM)
+FD_DuodenumDescription_List<-tolower(ListContstructor("Description_List","Description_Normal",PATH_DUODENUM))
+FD_DuodenumDescription_Normal<-ListContstructor("Description_Normal","Description_Ratio",PATH_DUODENUM)
+FD_DuodenumDescription_Ratio<-ListContstructor("Description_Ratio","Description_VA",PATH_DUODENUM)
+FD_DuodenumDescription_VA<-ListContstructor("Description_VA","Macroscopic_Description",PATH_DUODENUM)
+FD_DuodenumMacroscopic_Description<-ListContstructor("Macroscopic_Description","END",PATH_DUODENUM)
+
+# Sentence creation with macroscopic observations
+FD_path<-data.frame(paste0(replicate(1000,sample(FD_DuodenumMacroscopic_Description,1,replace=F)),""))
+
+# Create the normal findings
+FD_Normal<-data.frame(paste0(replicate(1000,sample(FD_DuodenumConclusion_Normal,1,replace=F)),""))
+FD_path[,1]<-paste(FD_path[,1],FD_Normal[,1])
+names(FD_path)<-"report"
+
+# Create the list findings
+#First check that the phrases in the list are not present in the text.
+#I want to see if any phrase of the list is present in the report
+ListCheck<-as.character(FD_DuodenumDescription_List)
+#Check which inputs are not present:
+lst <- ListCheck[sapply(ListCheck, function(x) any(grepl(x, FD_path$report)))]
+#Then to have a random number, use another sample for selecting the count per row:
+FD_path$new <- sapply(1:nrow(FD_path), function(x) {
+  paste(paste0("There is evidence of ",unique(sample(lst, sample(1:3, 1), replace = TRUE), collapse = ", ")),collapse = '\n')
+})
+
+#Naturalise the sentence here by gsubbing "\nThere is evidence of " with a list of positives and negatives
+
+
+# Create the coeliac findings -just 100 of them and then add to the reports via rbind
+FD_CD1_VA<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_VA,1,replace=F)),""))
+FD_CD2_IELs<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_IELs,1,replace=F)),""))
+FD_CD3_Inflamm<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_Inflammation,1,replace=F)),""))
+FD_CD4_Ratio<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_Ratio,1,replace=F)),""))
+FD_CD5_Conc<-data.frame(paste0(replicate(100,sample(FD_DuodenumConclusion_CD,1,replace=F)),""))
+
+FD_path_CD<-data.frame(paste(FD_CD1_VA[,1],FD_CD2_IELs[,1],FD_CD3_Inflamm[,1],FD_CD4_Ratio[,1],FD_CD5_Conc[,1]))
+names(FD_path_CD)<-"report"
+lst <- ListCheck[sapply(ListCheck, function(x) any(grepl(x, FD_path_CD$report)))]
+#Then to have a random number, use another sample for selecting the count per row:
+FD_path_CD$new <- sapply(1:nrow(FD_path_CD), function(x) {
+  paste(paste0("There is evidence of ",unique(sample(lst, sample(1:3, 1), replace = TRUE), collapse = ", ")),collapse = '\n')
+})
+
+Final<-rbind(FD_path,FD_path_CD)
+
+
+
+
+##### LISTS- Sentence introduction #####
+# Distribute the reports so that there are empties and Normals
 # #Need compartment specific indication- can get from the endoscopic indication when this is done
 # CLINICAL DETAILS
 # Alternating diarrhoea and constipation ? microscopic colitis.
@@ -454,4 +516,4 @@ dff3$report<-paste0("Nature of specimen:",dff3$report)
 #CLINICAL DETAILS: Derived from combination of the indication and the endoscopic findings text
 #HISTOLOGY Derived from the compartment that the biopsies were taken from
 #MACROSCOPICAL DESCRIPTION Derived from the Nature of specimen with sizes added
-#DIAGNOSIS Derived from the Histology section
+#DIAGNOSIS Derived from the Histology section.
