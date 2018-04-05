@@ -8,4 +8,7 @@ As in real-life, some of the endoscopies will also have pathology reports where 
 
 The methodology for the building of these synthetic datasets will be further explained when the documentation is fully developed.
 
-To install 
+To install you will need to install the developing package. with 
+devtools::install_github("sebastiz/FakeEndoReports")
+
+You can then run the script FakeDataGenerator.R which is well documented and describes all the steps to create the Endoscopic and Pathological data sets
