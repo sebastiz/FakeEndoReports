@@ -220,6 +220,16 @@ RandomSingleGsub<-function(phraseToReplace,listOfReplacements){
   out<-listtodf(out)
 }
 
+
+#'LocationAndBiopsy
+#'
+#' #ALocationAndBiopsy
+#' @param
+#' @param
+#' @keywords
+#' @export
+#' @examples
+
 LocationAndBiopsy<-function(x,regString1,listString1,listString2,source,biopsyListString1,biopsyListString2){
   if (stringr::str_detect(x, paste0(regString1))){
     #Get the list from the phrases text
@@ -232,4 +242,26 @@ LocationAndBiopsy<-function(x,regString1,listString1,listString2,source,biopsyLi
   }else {
     return(x)
   }
+}
+
+
+#'ListNegsAndPos
+#'
+#' #ListNegsAndPos
+#' @param
+#' @param
+#' @keywords
+#' @export
+#' @examples
+#'
+ListNegsAndPos<-function(dataframeIn){
+  ifelse(length(ListCheck[sapply(ListCheck, function(x) any(grepl(x, dataframeIn$report)))])>0,
+  lst <- ListCheck[sapply(ListCheck, function(x) any(grepl(x, dataframeIn$report)))],
+  lst <- ListCheck)
+  #Then to have a random number, use another sample for selecting the count per row:
+  output<- sapply(1:nrow(dataframeIn), function(x) {
+    paste(paste0("There is no evidence of ",unique(sample(lst, sample(1:3, 1), replace = TRUE), collapse = ", ")),collapse = '\n')
+  })
+  output<-as.character(output)
+  return(output)
 }

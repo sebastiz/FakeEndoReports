@@ -1,66 +1,8 @@
 library(stringr)
 #Get the out to be dataframe again after function
+#library(FakeEndoReports)
 library(FakeEndoReports)
-
-################################################################ LISTS- Sentence introduction #####################################################################################
-#Import the list of phrases for sentence construction
-FINDINGS <- readLines("/home/rstudio/FakeEndoReports/data/ImportPhrases")
-FINDINGS<-gsub("\"","",FINDINGS)
-names(FINDINGS) <- rep("x", length(FINDINGS))
-FINDINGS <- as.list(FINDINGS)
-
-##### LISTS- Sentence introduction #####
-# Distribute the reports so that there are empties and Normals
-FD_SentenceIntro<-ListContstructor("FD_SentenceIntro","FD_SentenceIntro1",FINDINGS)
-FD_SentenceIntro1<-ListContstructor("FD_SentenceIntro1","FD_Object",FINDINGS)
-
-##### LISTS- Basic descriptor lists #####
-FD_Object<-ListContstructor("FD_Object","FD_Location",FINDINGS)
-FD_Location<-ListContstructor("FD_Location","FD_PolypDescriptors",FINDINGS)
-
-##### LISTS- Macroscopic findings #####
-FD_PolypDescriptors<-ListContstructor("FD_PolypDescriptors","FD_UlcerDescriptors",FINDINGS)
-FD_UlcerDescriptors<-ListContstructor("FD_UlcerDescriptors","FD_StrictureDescriptors",FINDINGS)
-FD_StrictureDescriptors<-ListContstructor("FD_StrictureDescriptors","FD_InflammationDescriptors",FINDINGS)
-FD_InflammationDescriptors<-ListContstructor("FD_InflammationDescriptors","FD_NoduleDescriptors",FINDINGS)
-FD_NoduleDescriptors<-ListContstructor("FD_NoduleDescriptors","FD_UlcerDescSecond",FINDINGS)
-
-##### LISTS- Secondary embellishments- generic and not location specific #####
-FD_UlcerDescSecond<-ListContstructor("FD_UlcerDescSecond","FD_PolypDescSecond",FINDINGS)
-FD_PolypDescSecond<-ListContstructor("FD_PolypDescSecond","FD_StrictureDescSecond",FINDINGS)
-FD_StrictureDescSecond<-ListContstructor("FD_StrictureDescSecond","FD_BarrettIntro",FINDINGS)
-
-##### LISTS- DISEASE SPECIFIC #####
-FD_BarrettIntro<-ListContstructor("FD_BarrettIntro","FD_BarrettDetail1_Decsrip",FINDINGS)
-FD_BarrettDetail1_Decsrip<-ListContstructor("FD_BarrettDetail1_Decsrip","FD_BarrettDetail1_Benign",FINDINGS)
-FD_BarrettDetail1_Benign<-ListContstructor("FD_BarrettDetail1_Benign","FD_BarrettDetail2",FINDINGS)
-FD_BarrettDetail2<-ListContstructor("FD_BarrettDetail2","FD_BarrettDetail1",FINDINGS)
-FD_BarrettDetail1<-ListContstructor("FD_BarrettDetail1","FD_HiatusIntro",FINDINGS)
-FD_HiatusIntro<-ListContstructor("FD_HiatusIntro","FD_OesophagitisIntro",FINDINGS)
-FD_OesophagitisIntro<-ListContstructor("FD_OesophagitisIntro","FD_OesophagitisDetail",FINDINGS)
-FD_OesophagitisIntro<-ListReplicator("LA Grade ",sample(c("A", "B", "C", "D")),"oesophagitis",FD_OesophagitisIntro)
-FD_OesophagitisDetail<-ListContstructor("FD_OesophagitisDetail","FD_InletIntro",FINDINGS)
-FD_InletIntro<-ListContstructor("FD_InletIntro","FD_EosinophilicIntro",FINDINGS)
-FD_EosinophilicIntro<-ListContstructor("FD_EosinophilicIntro","FD_EosinophilicDetail",FINDINGS)
-FD_EosinophilicDetail<-ListContstructor("FD_EosinophilicDetail","FD_Dilatation",FINDINGS)
-FD_Dilatation<-ListContstructor("FD_Dilatation","FD_DilatationDetails",FINDINGS)
-FD_Dilatation<-list(unique(append(FD_Dilatation, replicate(5,paste("dilated to",sample(3:20), "mm with a CRE balloon")))))
-FD_DilatationDetails<-ListContstructor("FD_DilatationDetails","FD_ContinuityAdditionals",FINDINGS)
-
-##### LISTS- Continuity replacements random gsub  #####
-FD_ContinuityAdditionals<-ListContstructor("FD_ContinuityAdditionals","END",FINDINGS)
-
-
-#Select out the strings with certain keywords but in any order
-#Also get rid of any strings with numbers in them
-ENDOFINDINGS <- readLines("/home/rstudio/FakeEndoReports/data/FindingsText")
-ENDOFINDINGS<-gsub("\"","",ENDOFINDINGS)
-names(ENDOFINDINGS) <- rep("x", length(ENDOFINDINGS))
-ENDOFINDINGS <- data.frame(ENDOFINDINGS)
-ENDOFINDINGS$ENDOFINDINGS<-as.character(ENDOFINDINGS$ENDOFINDINGS)
-Hiat<-data.frame(ENDOFINDINGS[grepl("[Ss]trict",ENDOFINDINGS$ENDOFINDINGS),])
-names(Hiat)<-"x"
-Hiat<-Hiat[!grepl(".*\\d+.*",Hiat$x),]
+source("/home/rstudio/FakeEndoReports/R/listMaker.R")
 
 
 
@@ -379,19 +321,22 @@ out<-IntRanOneElement1("(oesophagus .* stricture)|(stricture .* oesophagus)",FD_
 out<-listtodf(out)
 
 ############################################################## 9. Endocsopy indication #######################################################################################
-#Import the list of phrases for sentence construction
-INDICATIONS <- readLines("/home/rstudio/FakeEndoReports/data/OGDIndication.txt")
-INDICATIONS<-gsub("\"","",INDICATIONS)
-names(INDICATIONS) <- rep("x", length(INDICATIONS))
-INDICATIONS <- as.list(INDICATIONS)
-FD_Indication<-ListContstructor("START","END",INDICATIONS)
 Indic<-paste0(replicate(1000,sample(FD_Indication,1,replace=F)),"")
-
 #Merge the Indication in to the Pathology report:
 out$out<-paste0("INDICATIONS FOR PROCEDURE: ",Indic," FINDINGS: ",out$out)
 out<-listtodf(out)
 ############################################################## 10. Pathology functions #######################################################################################
-#
+#The psinciples of creating the pathology datasets are as follows
+#1. Take from the endoscopy report which compartment was sampled (eg stomach/oesophagus etc)
+#2. Create number of biopsies taken from that compartment
+#3. Use this as a prompt for a pathology report to be written
+#4. As a separate dataset create pathology reports for conditions from different compartmentes
+#4a) Get list of commonly used phrases in pathology reports for each compartment
+#4b) Separate the phrases into 1) Macroscopic Description ii) Microscopic Description
+#iii) Conclusion iv)Recommendations for each condition
+#Combine all the pathology reports for each condition together and randomly distribute the
+#path reports to associate with endoscopic reports as long as the compartments match up
+
 pathReport<-str_extract_all(out$out,"COMPARTMENT_START.*COMPARTMENT_END")
 
 dff<-str_extract_all(as.character(pathReport),"COMPARTMENT_START.*BIOPSIES TAKEN:")
@@ -409,67 +354,160 @@ dff3$report<-gsub("WritePathReport NUMBER OF BIOPSIES: character\\(0\\) COMPARTM
 dff3$report<-paste0("Nature of specimen:",dff3$report)
 
 #Compartment specific pathology
-#Create the compartment list components then if that compartment present then create the path report for that compartment
-#Import the list of phrases for sentence construction
-PATH_DUODENUM <- readLines("/home/rstudio/FakeEndoReports/data/Path_Duodenum.txt")
-PATH_DUODENUM<-gsub("\"","",PATH_DUODENUM)
-names(PATH_DUODENUM) <- rep("x", length(PATH_DUODENUM))
-PATH_DUODENUM <- as.list(PATH_DUODENUM)
+###### _______Pathology- Duodenum ########################################################################################################################
 
-FD_DuodenumConclusion<-ListContstructor("Conclusion","Conclusion_CD",PATH_DUODENUM)
-FD_DuodenumConclusion_CD<-ListContstructor("Conclusion_CD","Conclusion_Normal",PATH_DUODENUM)
-FD_DuodenumConclusion_Normal<-ListContstructor("Conclusion_Normal","Conclusion2",PATH_DUODENUM)
-FD_DuodenumConclusion2<-ListContstructor("Conclusion2","Description",PATH_DUODENUM)
-FD_DuodenumDescription<-ListContstructor("Description","Description_IELs",PATH_DUODENUM)
-FD_DuodenumDescription_IELs<-ListContstructor("Description_IELs","Description_Inflammation",PATH_DUODENUM)
-FD_DuodenumDescription_Inflammation<-ListContstructor("Description_Inflammation","Description_List",PATH_DUODENUM)
-FD_DuodenumDescription_List<-tolower(ListContstructor("Description_List","Description_Normal",PATH_DUODENUM))
-FD_DuodenumDescription_Normal<-ListContstructor("Description_Normal","Description_Ratio",PATH_DUODENUM)
-FD_DuodenumDescription_Ratio<-ListContstructor("Description_Ratio","Description_VA",PATH_DUODENUM)
-FD_DuodenumDescription_VA<-ListContstructor("Description_VA","Macroscopic_Description",PATH_DUODENUM)
-FD_DuodenumMacroscopic_Description<-ListContstructor("Macroscopic_Description","END",PATH_DUODENUM)
-
-# Sentence creation with macroscopic observations
+# a. Sentence creation with macroscopic observations
 FD_path<-data.frame(paste0(replicate(1000,sample(FD_DuodenumMacroscopic_Description,1,replace=F)),""))
 
 # Create the normal findings
 FD_Normal<-data.frame(paste0(replicate(1000,sample(FD_DuodenumConclusion_Normal,1,replace=F)),""))
 FD_path[,1]<-paste(FD_path[,1],FD_Normal[,1])
+#Add in positive and negative findings just for bulking purposes
+FD_path<-data.frame(paste(FD_path[,1],ListNegsAndPos(FD_path)))
 names(FD_path)<-"report"
 
-# Create the list findings
-#First check that the phrases in the list are not present in the text.
-#I want to see if any phrase of the list is present in the report
+# b. Get the list of relevant negatives:
 ListCheck<-as.character(FD_DuodenumDescription_List)
-#Check which inputs are not present:
-lst <- ListCheck[sapply(ListCheck, function(x) any(grepl(x, FD_path$report)))]
-#Then to have a random number, use another sample for selecting the count per row:
-FD_path$new <- sapply(1:nrow(FD_path), function(x) {
-  paste(paste0("There is evidence of ",unique(sample(lst, sample(1:3, 1), replace = TRUE), collapse = ", ")),collapse = '\n')
-})
 
-#Naturalise the sentence here by gsubbing "\nThere is evidence of " with a list of positives and negatives
-
-
-# Create the coeliac findings -just 100 of them and then add to the reports via rbind
+# c. Create the coeliac findings -just 100 of them and then add to the reports via rbind
 FD_CD1_VA<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_VA,1,replace=F)),""))
 FD_CD2_IELs<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_IELs,1,replace=F)),""))
 FD_CD3_Inflamm<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_Inflammation,1,replace=F)),""))
 FD_CD4_Ratio<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_Ratio,1,replace=F)),""))
 FD_CD5_Conc<-data.frame(paste0(replicate(100,sample(FD_DuodenumConclusion_CD,1,replace=F)),""))
-
-FD_path_CD<-data.frame(paste(FD_CD1_VA[,1],FD_CD2_IELs[,1],FD_CD3_Inflamm[,1],FD_CD4_Ratio[,1],FD_CD5_Conc[,1]))
+FD_path_CD<-data.frame(paste(FD_CD1_VA[,1],FD_CD2_IELs[,1],FD_CD3_Inflamm[,1],FD_CD4_Ratio[,1]))
 names(FD_path_CD)<-"report"
-lst <- ListCheck[sapply(ListCheck, function(x) any(grepl(x, FD_path_CD$report)))]
-#Then to have a random number, use another sample for selecting the count per row:
-FD_path_CD$new <- sapply(1:nrow(FD_path_CD), function(x) {
-  paste(paste0("There is evidence of ",unique(sample(lst, sample(1:3, 1), replace = TRUE), collapse = ", ")),collapse = '\n')
-})
 
-Final<-rbind(FD_path,FD_path_CD)
+# d. Add the negatives list in before the conclusion so it is in the correct order
+# d)i). Check which elements from the list are not present in the text so no contradictions
+FD_path_CDlist<-ListNegsAndPos(FD_path_CD)
+FD_path_CD<-data.frame(paste(FD_path_CD[,1],FD_path_CDlist,FD_CD5_Conc[,1]))
+names(FD_path_CD)<-"report"
+
+#rbind it to a list
+Final_path_Duodenum<-rbind(FD_path,FD_path_CD)
+
+
+##### _______Pathology Barretts ########################################################################################################################
+# NB. No normal findings as by definition already have Barrett's oesophagus
+
+# a. Sentence creation with macroscopic observations
+FD_path_SentenceStartBarr<-data.frame(paste0(replicate(1000,sample(FD_BarrettsMacroscopic_Description,1,replace=F)),""))
+
+# b. Get the list of relevant negatives:
+ListCheck<-as.character(FD_BarrettsDescription_List)
+
+# c. Create the Barrett's findings -just 100 of them and then add to the reports via rbind
+FD_CD2_BarrettsDescription_OAC<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription_OAC,1,replace=F)),""))
+names(FD_CD2_BarrettsDescription_OAC)<-"report"
+FD_CD3_BarrettsDescription_D<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription_D,1,replace=F)),""))
+FD_CD4_BarrettsDescription<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription,1,replace=F)),""))
+FD_CD4_BarrettsConclusion2<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion2,1,replace=F)),""))
+FD_CD5_BarrettsConclusion_OAC<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_OAC,1,replace=F)),""))
+FD_CD6_BarrettsConclusion_Inflamm<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_Inflamm,1,replace=F)),""))
+FD_CD7_BarrettsConclusion_D<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_D,1,replace=F)),""))
+
+# d. Add the negatives list in before the conclusion so it is in the correct order
+# d)i). Check which elements from the list are not present in the text so no contradictions
+FD_BarrettsDescription_OAClist<-ListNegsAndPos(FD_CD2_BarrettsDescription_OAC)
+# d)ii). Paste the list between the sentence start and the conclusion for that disease
+Barr_OAC<-data.frame(paste(FD_path_SentenceStartBarr[,1],FD_BarrettsDescription_OAClist,FD_CD5_BarrettsConclusion_OAC[,1]))
+# d)iii) Always make sure that the column is named "report" so that the rbind can happen for that disease
+names(Barr_OAC)<-"report"
+
+
+# e.Repeat as above for the other diseases:
+FD_CD3_BarrettsDescription_Dlist<-ListNegsAndPos(FD_CD3_BarrettsDescription_D)
+Barr_D<-data.frame(paste(FD_path_SentenceStartBarr[,1],FD_CD3_BarrettsDescription_Dlist,FD_CD7_BarrettsConclusion_D[,1]))
+names(Barr_D)<-"report"
+
+FD_CD4_BarrettsDescriptionlist<-ListNegsAndPos(FD_CD4_BarrettsDescription)
+Barr_Only<-data.frame(paste(FD_path_SentenceStartBarr[,1],FD_CD4_BarrettsDescriptionlist,FD_CD6_BarrettsConclusion_Inflamm[,1]))
+names(Barr_Only)<-"report"
+
+# f. bind everything together:
+FD_path_Barr<-rbind(Barr_OAC,Barr_D,Barr_Only)
 
 
 
+###### _______Pathology- Oesophagus- non Barrett's oesophagus ########################################################################################################################
+
+# a. Sentence creation with macroscopic observations
+FD_path_SentenceStartBarr<-data.frame(paste0(replicate(1000,sample(FD_BarrettsMacroscopic_Description,1,replace=F)),""))
+
+# b. Get the list of relevant negatives:
+ListCheck<-as.character(FD_BarrettsDescription_List)
+
+# c. Create the Barrett's findings -just 100 of them and then add to the reports via rbind
+FD_CD2_BarrettsDescription_OAC<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription_OAC,1,replace=F)),""))
+names(FD_CD2_BarrettsDescription_OAC)<-"report"
+FD_CD3_BarrettsDescription_D<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription_D,1,replace=F)),""))
+FD_CD4_BarrettsDescription<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription,1,replace=F)),""))
+FD_CD4_BarrettsConclusion2<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion2,1,replace=F)),""))
+FD_CD5_BarrettsConclusion_OAC<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_OAC,1,replace=F)),""))
+FD_CD6_BarrettsConclusion_Inflamm<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_Inflamm,1,replace=F)),""))
+FD_CD7_BarrettsConclusion_D<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_D,1,replace=F)),""))
+
+# d. Add the negatives list in before the conclusion so it is in the correct order
+# d)i). Check which elements from the list are not present in the text so no contradictions
+FD_BarrettsDescription_OAClist<-ListNegsAndPos(FD_CD2_BarrettsDescription_OAC)
+# d)ii). Paste the list between the sentence start and the conclusion for that disease
+Barr_OAC<-data.frame(paste(FD_path_SentenceStartBarr[,1],FD_BarrettsDescription_OAClist,FD_CD5_BarrettsConclusion_OAC[,1]))
+# d)iii) Always make sure that the column is named "report" so that the rbind can happen for that disease
+names(Barr_OAC)<-"report"
+
+
+# e.Repeat as above for the other diseases:
+FD_CD3_BarrettsDescription_Dlist<-ListNegsAndPos(FD_CD3_BarrettsDescription_D)
+Barr_D<-data.frame(paste(FD_path_SentenceStartBarr[,1],FD_CD3_BarrettsDescription_Dlist,FD_CD7_BarrettsConclusion_D[,1]))
+names(Barr_D)<-"report"
+
+FD_CD4_BarrettsDescriptionlist<-ListNegsAndPos(FD_CD4_BarrettsDescription)
+Barr_Only<-data.frame(paste(FD_path_SentenceStartBarr[,1],FD_CD4_BarrettsDescriptionlist,FD_CD6_BarrettsConclusion_Inflamm[,1]))
+names(Barr_Only)<-"report"
+
+# f. bind everything together:
+FD_path_Barr<-rbind(Barr_OAC,Barr_D,Barr_Only)
+
+###### _______Pathology- Stomach########################################################################################################################
+
+
+# a. Sentence creation with macroscopic observations
+FD_path_SentenceStartBarr<-data.frame(paste0(replicate(1000,sample(FD_BarrettsMacroscopic_Description,1,replace=F)),""))
+
+# b. Get the list of relevant negatives:
+ListCheck<-as.character(FD_BarrettsDescription_List)
+
+# c. Create the Barrett's findings -just 100 of them and then add to the reports via rbind
+FD_CD2_BarrettsDescription_OAC<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription_OAC,1,replace=F)),""))
+names(FD_CD2_BarrettsDescription_OAC)<-"report"
+FD_CD3_BarrettsDescription_D<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription_D,1,replace=F)),""))
+FD_CD4_BarrettsDescription<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription,1,replace=F)),""))
+FD_CD4_BarrettsConclusion2<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion2,1,replace=F)),""))
+FD_CD5_BarrettsConclusion_OAC<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_OAC,1,replace=F)),""))
+FD_CD6_BarrettsConclusion_Inflamm<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_Inflamm,1,replace=F)),""))
+FD_CD7_BarrettsConclusion_D<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_D,1,replace=F)),""))
+
+# d. Add the negatives list in before the conclusion so it is in the correct order
+# d)i). Check which elements from the list are not present in the text so no contradictions
+FD_BarrettsDescription_OAClist<-ListNegsAndPos(FD_CD2_BarrettsDescription_OAC)
+# d)ii). Paste the list between the sentence start and the conclusion for that disease
+Barr_OAC<-data.frame(paste(FD_path_SentenceStartBarr[,1],FD_BarrettsDescription_OAClist,FD_CD5_BarrettsConclusion_OAC[,1]))
+# d)iii) Always make sure that the column is named "report" so that the rbind can happen for that disease
+names(Barr_OAC)<-"report"
+
+
+# e.Repeat as above for the other diseases:
+FD_CD3_BarrettsDescription_Dlist<-ListNegsAndPos(FD_CD3_BarrettsDescription_D)
+Barr_D<-data.frame(paste(FD_path_SentenceStartBarr[,1],FD_CD3_BarrettsDescription_Dlist,FD_CD7_BarrettsConclusion_D[,1]))
+names(Barr_D)<-"report"
+
+FD_CD4_BarrettsDescriptionlist<-ListNegsAndPos(FD_CD4_BarrettsDescription)
+Barr_Only<-data.frame(paste(FD_path_SentenceStartBarr[,1],FD_CD4_BarrettsDescriptionlist,FD_CD6_BarrettsConclusion_Inflamm[,1]))
+names(Barr_Only)<-"report"
+
+# f. bind everything together:
+FD_path_Barr<-rbind(Barr_OAC,Barr_D,Barr_Only)
 
 ##### LISTS- Sentence introduction #####
 # Distribute the reports so that there are empties and Normals
