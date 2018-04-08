@@ -12,3 +12,31 @@ To install you will need to install the developing package. with
 devtools::install_github("sebastiz/FakeEndoReports")
 
 You can then run the script FakeDataGenerator.R which is well documented and describes all the steps to create the Endoscopic and Pathological data sets
+
+
+
+
+The data sets are created as follows:
+
+1. Creation of the endoscopy datasets.
+	i. Create sample of Normal endoscopy report with empty reports.
+	ii. Fill empty reports with sample of pre-collated basic macroscopic findings (stricture/polyp etc).
+	iv. Add further embellishment based on the macroscopic observation.
+	iii. Proportional replacement of some of the Normal gastroscopy findings with a named disease (eg Barrett's, hiatus hernia etc.)
+	iv. Replacement of the named disease with detail about the disease and detail as needed
+	v. Report naturalisation- introduction of conjunctions and others to make the report sound less computer generated
+	vi. Extraction of which compartment has been reported on (stomach/oesophagus/ D1 etc.)- necessary to make pathology relevant to the endoscopy report
+	vii. Create top and tail to the report- sedation used/indication etc.
+2. Extrapolation of samples taken from the endoscopy dataset to initialize a separate pathology dataset.
+	i. Extract from the endoscopy report the labelled compartment ********** IS THIS NECESSARY.
+	ii. Clean up the compartment to get rid of repetition etc (********inital pathReport- but isnt this already in Compartment??)
+	iii. Further extraction of which compartment with randomisation of number of biopsies ******* CONFUSING WHY DO THIS AGAIN????? 
+	iii.Merge with the endoscopy dataset.
+3. Creation of the pathology dataset.
+	i. Create the dpathology dataset based on a) the Compartment and b) Disease specific
+	ii. The pathology report has an introductory line, an Indication (from the associated endoscopy report), A Macroscopic finding (number of biopsies and where taken from), Microscopic finding (based on the compartment and disease) and add generic list of negatives before the report conclusion. All of these come from randomly sampled pre-compiled lists. The relevant negatives are inserted as long as the terms are not already mentioned (which would result in contradiction).
+	iii. Create proportional pathology reports per disease and merge all disease (and normal) datasets for that compartment into one dataset for that compartment
+	iv. 
+4. Combine the endoscopy with the pathology dataset as long as biopsies have been taken
+5. Tidy up loose columns
+

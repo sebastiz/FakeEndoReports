@@ -571,6 +571,18 @@ names(out3)<-"report"
 
 out3<-bulker("GOJ|fundus|oesophag|stomach body|duodenal bulb|antrum|second part of the duodenum|third part of the duodenum",out3)
 out3<-listtodf(out3)
+
+
+
+#To do:
+#Sort out the bulker so it makes sense.
+#Top and tail the pathology reports
+#Check sense of pathology reports and correct lists
+  #Decide to tailor lists for pathology eg to get cancer lists more meaningful and also to get the Description_lists unified and mutually exclusive
+#Tidy up the data.
+#Start use cases and how to make it downloadable.
+#Do the documentation.
+
 #Now you have to tie the pathology reports to the endoscopy
 
 ##### LISTS- Sentence introduction #####
