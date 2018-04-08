@@ -164,6 +164,16 @@ out<-listtodf(out)
 
 #Extract the compartment for pathology later
 Compartment<-str_extract_all(out$out, "Columnar|Barrett|stomach|antrum|body|fundus|GOJ|oesophag|oesophagitis|duod|D1|inlet|hernia")
+Compartment<-lapply(as.character(Compartment),function(x)str_replace_all(x, "[[:punct:]]", ""))
+
+#Remove duplicate words that confuse things like oesophag oesophag
+Compartment<-gsub("^c","",Compartment)
+Compartment<-gsub("oesophag oesophag","oesophag",Compartment)
+Compartment<-gsub("oesophag hernia","oesophag",Compartment)
+Compartment<-gsub("oesophag oesophag","oesophag",Compartment)
+Compartment<-gsub("Barrett oesophag","Barrett",Compartment)
+Compartment<-gsub("Columnar oesophag","Barrett",Compartment)
+
 ############################################################## 6. Location specific functions for management, biopsies and further details ################################
 
 #The principle here is a. Add the endoscopist's impression of the possible diagnosis based on the lesion and location and b.) Add details about which biopsies were taken.
@@ -531,36 +541,36 @@ FD_path_Stomach$report<-as.character(FD_path_Stomach$report)
 
 ##### 11. Bind the reports to the compartment specific endoscopy results #########
 
+
+
+
+
 #If the WritePathReport column has "WritePathReport" and if fundus/body/antrum in the compartment then select a sample from  FD_path_Stomach
 #and put it in a new column:
 
 
 
-
-
-
 out2$PathReport<-apply(out2, 1, function(x) {
-  ifelse(!is.na(x$WritePathReport) & grepl("fundus|antrum|body|stomach",x$Compartment),sample(FD_path_Stomach$report,1,replace=T),
-         ifelse(!is.na(x$WritePathReport)& grepl("duod",x$Compartment),sample(Final_path_Duodenum$report,1),
-                ifelse(!is.na(x$WritePathReport) & grepl("Columnar|Barrett",x$Compartment),sample(FD_path_Barr$report,1),
-                       ifelse(!is.na(x$WritePathReport) & grepl("GOJ|oesophag",x$Compartment),sample(FD_path_Oesoph$report,1),
-                              "No report here"))))
+  ifelse(str_detect(x[["out"]],"WritePathReport") & grepl("fundus|antrum|body|stomach",x[["Compartment"]]),sample(FD_path_Stomach$report,1,replace=T),
+         ifelse(str_detect(x[["out"]],"WritePathReport") & grepl("duod",x[["Compartment"]]),sample(Final_path_Duodenum$report,1),
+                ifelse(str_detect(x[["out"]],"WritePathReport")  & grepl("Columnar|Barrett",x[["Compartment"]]),sample(FD_path_Barr$report,1),
+                       ifelse(!str_detect(x[["out"]],"WritePathReport") & grepl("GOJ|oesophag",x[["Compartment"]]),sample(FD_path_Oesoph$report,1),
+                              ""))))
   })
 
+out2$PathReport<-gsub("^\\d+$","",out2$PathReport)
 #Start cleaning up the columns:
-out2$PathReport<-paste(out2$out,out2$PathReport)
 out2$report<-NULL
 out2$Compartment<-NULL
 out2$WritePathReport<-NULL
 
 #further tidy up when biopsies not taken
-out2$PathReport<-gsub(".*Nature of specimen:NA.*",NA,out2$PathReport)
 
 out3<-data.frame(paste0(out2$out,":::::::",out2$PathReport))
 names(out3)<-"report"
 
 out3<-bulker("GOJ|fundus|oesophag|stomach body|duodenal bulb|antrum|second part of the duodenum|third part of the duodenum",out3)
-out3<-listtodf(out)
+out3<-listtodf(out3)
 #Now you have to tie the pathology reports to the endoscopy
 
 ##### LISTS- Sentence introduction #####
