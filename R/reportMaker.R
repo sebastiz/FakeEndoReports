@@ -86,14 +86,14 @@ flag<-function(inputString,outputString,proportion,sampleList,mydf){
 #' @export
 #' @examples bulker()
 
-bulker <- function(inputString){
-  apply(out, 1, function(x) {
+bulker <- function(inputString,dataframeIn){
+  apply(dataframeIn, 1, function(x) {
     #If you get a match for the following
     if (stringr::str_detect(x, inputString)) {
       #Then store that match
       mymatch<-stringr::str_match(x, inputString)
-      #Then use the match to select out any report that does not have that match in it to avoid conflicting results
-      t<-data.frame(out[!grepl(mymatch,out$out),])
+      #Then use the match to select any report that does not have that match in it to avoid conflicting results
+      t<-data.frame(dataframeIn[!grepl(mymatch,dataframeIn$out),])
       # Get a random row:
       ret<-as.character(t[sample(1:nrow(t),1),])
       ret<-gsub("Normal gastroscopy to the duodenum.","",ret)
