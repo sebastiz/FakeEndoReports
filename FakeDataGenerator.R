@@ -375,6 +375,8 @@ dff3$report<-paste0("Nature of specimen:",dff3$report)
 out2<-cbind(dff3,out)
 out2$Compartment<-Compartment
 
+out2$out<-gsub("COMPARTMENT_START .* BIOPSIES TAKEN: NA NUMBER OF BIOPSIES: .*COMPARTMENT_END","",out2$out)
+
 
 #Compartment specific pathology
 ###### _______Pathology- Duodenum ########################################################################################################################
@@ -573,9 +575,9 @@ out2$Compartment<-NULL
 out2$WritePathReport<-NULL
 
 #further tidy up when biopsies not taken
-
-out3<-data.frame(paste0(out2$out,":::::::",out2$PathReport))
+Indications<-data.frame(Indic)
 names(out3)<-"report"
+
 
 out3<-bulker("GOJ|fundus|oesophag|stomach body|duodenal bulb|antrum|second part of the duodenum|third part of the duodenum",out3)
 out3<-listtodf(out3)
