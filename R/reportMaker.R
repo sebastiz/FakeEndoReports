@@ -253,7 +253,7 @@ LocationAndBiopsy<-function(x,regString1,listString1,listString2,source,biopsyLi
 #' @keywords
 #' @export
 #' @examples
-#'
+
 ListNegsAndPos<-function(dataframeIn){
   ifelse(length(ListCheck[sapply(ListCheck, function(x) any(grepl(x, dataframeIn$report)))])>0,
   lst <- ListCheck[sapply(ListCheck, function(x) any(grepl(x, dataframeIn$report)))],

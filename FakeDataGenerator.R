@@ -407,8 +407,11 @@ FD_path_CDlist<-ListNegsAndPos(FD_path_CD)
 FD_path_CD<-data.frame(paste(FD_path_CD[,1],FD_path_CDlist,FD_CD5_Conc[,1]))
 names(FD_path_CD)<-"report"
 
-#rbind it to a list
-Final_path_Duodenum<-rbind(FD_path,FD_path_CD)
+# f. bind everything together:
+
+Final_path_Duodenum<-as.list(rbind(FD_path,FD_path_CD))
+Final_path_Duodenum$report<-as.character(Final_path_Duodenum$report)
+
 
 
 ##### _______Pathology Barretts ########################################################################################################################
@@ -449,7 +452,8 @@ Barr_Only<-data.frame(paste(FD_path_SentenceStartBarr[,1],FD_CD4_BarrettsDescrip
 names(Barr_Only)<-"report"
 
 # f. bind everything together:
-FD_path_Barr<-rbind(Barr_OAC,Barr_D,Barr_Only)
+FD_path_Barr<-as.list(rbind(Barr_OAC,Barr_D,Barr_Only),stringsAsFactors=F)
+FD_path_Barr$report<-as.character(FD_path_Barr$report)
 
 
 
@@ -492,7 +496,9 @@ Oesoph_Dysplasia<-data.frame(paste(FD_path_SentenceStartOesoph[,1],FD_CD8_Oesoph
 names(Oesoph_Dysplasia)<-"report"
 
 # f. bind everything together:
-FD_path_Oesoph<-rbind(Oesoph_Inflam,Oesoph_EoE,Oesoph_Dysplasia)
+FD_path_Oesoph<-as.list(rbind(Oesoph_Inflam,Oesoph_EoE,Oesoph_Dysplasia),stringsAsFactors=F)
+FD_path_Oesoph$report<-as.character(FD_path_Oesoph$report)
+
 
 ###### _______Pathology- Stomach ########################################################################################################################
 
@@ -538,6 +544,8 @@ names(Stomach_Polyp)<-"report"
 # f. bind everything together:
 FD_path_Stomach<-as.list(rbind(Stomach_Inflam,Stomach_Dysplasia,Stomach_Polyp),stringsAsFactors=F)
 FD_path_Stomach$report<-as.character(FD_path_Stomach$report)
+
+
 
 ##### 11. Bind the reports to the compartment specific endoscopy results #########
 
