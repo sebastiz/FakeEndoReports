@@ -42,7 +42,7 @@ The data sets are created as follows:
 
   + i. Create the dpathology dataset based on a) the Compartment and b) Disease specific
   + ii. The pathology report has an introductory line, an Indication (from the associated endoscopy report), A Macroscopic finding (number of biopsies and where taken from), Microscopic finding (based on the compartment and disease) and add generic list of negatives before the report conclusion. All of these come from randomly sampled pre-compiled lists. The relevant negatives are inserted as long as the terms are not already mentioned (which would result in contradiction).
-  + iii. Create proportional pathology reports per disease and merge all disease (and normal) datasets for that compartment into one dataset for that compartment
+  + iii. Create proportional pathology reports per disease and merge all disease (and normal) datasets for that compartment into one dataset for that compartment.
 	iv. 
 
 **4. Combine the endoscopy with the pathology dataset as long as biopsies have been taken**
