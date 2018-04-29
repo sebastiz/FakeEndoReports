@@ -49,8 +49,6 @@ The data sets are created as follows:
 
 **5. Tidy up loose columns**
 
-
-
 **Overview picture to be tidied up**
 
 ![Overview picture to be tidied up](img/FakeEndoReportConstruction.png)
