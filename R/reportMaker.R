@@ -87,7 +87,7 @@ flag<-function(inputString,outputString,proportion,sampleList,mydf){
 #' @examples bulker()
 
 bulker <- function(inputString,dataframeIn){
-  apply(dataframeIn, 1, function(x) {
+  t(apply(dataframeIn, 1, function(x) {
     #If you get a match for the following
     if (stringr::str_detect(x, inputString)) {
       #Then store that match
@@ -98,14 +98,16 @@ bulker <- function(inputString,dataframeIn){
       ret<-as.character(t[sample(1:nrow(t),1),])
       ret<-gsub("Normal gastroscopy to the duodenum.","",ret)
       # Now just need to paste the result into the row
+      browser
       ret2<-paste0(x,"\n",ret)
-      return(ret2)
+      ret2<-t(ret2)
+
     }
 
     else {
       return(x)
     }
-  })
+  }))
 }
 
 #'Internally relevant detail adder - interpolate
@@ -243,7 +245,6 @@ LocationAndBiopsy<-function(x,regString1,listString1,listString2,source,biopsyLi
     return(x)
   }
 }
-
 
 #'ListNegsAndPos
 #'

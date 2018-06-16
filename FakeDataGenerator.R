@@ -1,8 +1,9 @@
 library(stringr)
+library(rprojroot)
+myroot<-rprojroot::find_root("DESCRIPTION")
 #Get the out to be dataframe again after function
-#library(FakeEndoReports)
-library(FakeEndoReports)
-source("/home/rstudio/FakeEndoReports/R/listMaker.R")
+source("~/FakeEndoReports/R/reportMaker.R")
+source("~/FakeEndoReports/R/listMaker.R")
 
 
 
@@ -66,7 +67,7 @@ out<-listtodf(out)
 
 
 
-############################################################### Disease description ###########################################################################################################
+############################################################### 4. Disease description ###########################################################################################################
 
 
 ##### 4a. Disease eplacement flag - Barretts
@@ -178,7 +179,7 @@ Compartment<-gsub("Columnar oesophag","Barrett",Compartment)
 
 #The principle here is a. Add the endoscopist's impression of the possible diagnosis based on the lesion and location and b.) Add details about which biopsies were taken.
 #Import the list of phrases for sentence construction
-LOCATION_BIOPSES <- readLines("/home/rstudio/FakeEndoReports/data/LocationManagementAndBiopsiesPhrases")
+LOCATION_BIOPSES <- readLines("~/FakeEndoReports/data/LocationManagementAndBiopsiesPhrases")
 LOCATION_BIOPSES<-gsub("\"","",LOCATION_BIOPSES)
 names(LOCATION_BIOPSES) <- rep("x", length(LOCATION_BIOPSES))
 LOCATION_BIOPSES <- as.list(LOCATION_BIOPSES)
@@ -357,15 +358,15 @@ pathReport<-gsub("oesophag oesophag","oesophag",pathReport)
 pathReport<-gsub("Barrett oesophag","Barrett",pathReport)
 pathReport<-gsub("Columnar oesophag","Barrett",pathReport)
 
-dff<-str_extract_all(as.character(pathReport),"COMPARTMENT_START.*COMPARTMENT_END")
+dff<-str_extract_all(as.character(pathReport),"COMPARTMENTSTART.*COMPARTMENTEND")
 dff2<-lapply(dff,function(x) paste(x,collapse=','))
-dff3<-data.frame(gsub("COMPARTMENT_START .* BIOPSIES TAKEN: NA NUMBER OF BIOPSIES: character.*COMPARTMENT_END",NA,dff2))
+dff3<-data.frame(gsub("COMPARTMENTSTART .* BIOPSIES TAKEN: NA NUMBER OF BIOPSIES: character.*COMPARTMENTEND",NA,dff2))
 names(dff3)<-"report"
 dff3$report<-gsub("BIOPSIES TAKEN:","biopsies taken",dff3$report)
 
 library(gsubfn)
 #Add in a random number of biopsies
-dff3$report<-gsubfn("(COMPARTMENT_START)", function(x) paste0("x", sample(3:10, 1)), dff3$report)
+dff3$report<-gsubfn("(COMPARTMENTSTART)", function(x) paste0("x", sample(3:10, 1)), dff3$report)
 dff3$report<-gsub("\"","",dff3$report)
 dff3$WritePathReport<-ifelse(grepl("WritePathReport",dff3$report),paste(str_extract(dff3$report,"\\d+.*taken")),"")
 dff3$report<-paste0("Nature of specimen:",dff3$report)
@@ -375,17 +376,17 @@ dff3$report<-paste0("Nature of specimen:",dff3$report)
 out2<-cbind(dff3,out)
 out2$Compartment<-Compartment
 
-out2$out<-gsub("COMPARTMENT_START .* BIOPSIES TAKEN: NA NUMBER OF BIOPSIES: .*COMPARTMENT_END","",out2$out)
+out2$out<-gsub("COMPARTMENTSTART .* BIOPSIES TAKEN: NA NUMBER OF BIOPSIES: .*COMPARTMENTEND","",out2$out)
 
 
 #Compartment specific pathology
 ###### _______Pathology- Duodenum ########################################################################################################################
 
 # a. Sentence creation with macroscopic observations
-FD_path<-data.frame(paste0(replicate(1000,sample(FD_DuodenumMacroscopic_Description,1,replace=F)),""))
+FD_path<-data.frame(paste0("Macroscopic Description: ",replicate(1000,sample(FD_DuodenumMacroscopic_Description,1,replace=F)),"",". Microscopic Description"))
 
 # Create the normal findings
-FD_Normal<-data.frame(paste0(replicate(1000,sample(FD_DuodenumConclusion_Normal,1,replace=F)),""))
+FD_Normal<-data.frame(paste0(replicate(1000,sample(FD_DuodenumConclusion_Normal,1,replace=F)),"",". Microscopic Description"))
 FD_path[,1]<-paste(FD_path[,1],FD_Normal[,1])
 #Add in positive and negative findings just for bulking purposes
 FD_path<-data.frame(paste(FD_path[,1],ListNegsAndPos(FD_path)))
@@ -400,7 +401,7 @@ FD_CD2_IELs<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_IELs,
 FD_CD3_Inflamm<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_Inflammation,1,replace=F)),""))
 FD_CD4_Ratio<-data.frame(paste0(replicate(100,sample(FD_DuodenumDescription_Ratio,1,replace=F)),""))
 FD_CD5_Conc<-data.frame(paste0(replicate(100,sample(FD_DuodenumConclusion_CD,1,replace=F)),""))
-FD_path_CD<-data.frame(paste(FD_CD1_VA[,1],FD_CD2_IELs[,1],FD_CD3_Inflamm[,1],FD_CD4_Ratio[,1]))
+FD_path_CD<-data.frame(paste(FD_CD1_VA[,1],FD_CD2_IELs[,1],FD_CD3_Inflamm[,1],FD_CD4_Ratio[,1],"Conclusion: ",FD_CD5_Conc))
 names(FD_path_CD)<-"report"
 
 # d. Add the negatives list in before the conclusion so it is in the correct order
@@ -420,7 +421,7 @@ Final_path_Duodenum$report<-as.character(Final_path_Duodenum$report)
 # NB. No normal findings as by definition already have Barrett's oesophagus
 
 # a. Sentence creation with macroscopic observations
-FD_path_SentenceStartBarr<-data.frame(paste0(replicate(1000,sample(FD_BarrettsMacroscopic_Description,1,replace=F)),""))
+FD_path_SentenceStartBarr<-data.frame(paste0("Macroscopic Description: ",replicate(1000,sample(FD_BarrettsMacroscopic_Description,1,replace=F)),"",". Microscopic Description"))
 
 # b. Get the list of relevant negatives:
 ListCheck<-as.character(FD_BarrettsDescription_List)
@@ -430,10 +431,10 @@ FD_CD2_BarrettsDescription_OAC<-data.frame(paste0(replicate(100,sample(FD_Barret
 names(FD_CD2_BarrettsDescription_OAC)<-"report"
 FD_CD3_BarrettsDescription_D<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription_D,1,replace=F)),""))
 FD_CD4_BarrettsDescription<-data.frame(paste0(replicate(100,sample(FD_BarrettsDescription,1,replace=F)),""))
-FD_CD4_BarrettsConclusion2<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion2,1,replace=F)),""))
-FD_CD5_BarrettsConclusion_OAC<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_OAC,1,replace=F)),""))
-FD_CD6_BarrettsConclusion_Inflamm<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_Inflamm,1,replace=F)),""))
-FD_CD7_BarrettsConclusion_D<-data.frame(paste0(replicate(100,sample(FD_BarrettsConclusion_D,1,replace=F)),""))
+FD_CD4_BarrettsConclusion2<-data.frame(paste0(" Conclusion: ",replicate(100,sample(FD_BarrettsConclusion2,1,replace=F)),""))
+FD_CD5_BarrettsConclusion_OAC<-data.frame(paste0(" Conclusion: ",replicate(100,sample(FD_BarrettsConclusion_OAC,1,replace=F)),""))
+FD_CD6_BarrettsConclusion_Inflamm<-data.frame(paste0(" Conclusion: ",replicate(100,sample(FD_BarrettsConclusion_Inflamm,1,replace=F)),""))
+FD_CD7_BarrettsConclusion_D<-data.frame(paste0(" Conclusion: ",replicate(100,sample(FD_BarrettsConclusion_D,1,replace=F)),""))
 
 # d. Add the negatives list in before the conclusion so it is in the correct order
 # d)i). Check which elements from the list are not present in the text so no contradictions
@@ -462,7 +463,7 @@ FD_path_Barr$report<-as.character(FD_path_Barr$report)
 ###### _______Pathology- Oesophagus- non Barrett's oesophagus ########################################################################################################################
 
 # a. Sentence creation with macroscopic observations
-FD_path_SentenceStartOesoph<-data.frame(paste0(replicate(1000,sample(FD_OesophagusMacroscopic_Description,1,replace=F)),""))
+FD_path_SentenceStartOesoph<-data.frame(paste0("Macroscopic Description: ",replicate(1000,sample(FD_OesophagusMacroscopic_Description,1,replace=F)),"",". Microscopic Description"))
 
 # b. Get the list of relevant negatives:
 ListCheck<-as.character(FD_OesophagusDescription_List)
@@ -472,11 +473,11 @@ FD_CD2_OesophagusDescription_Inflammation<-data.frame(paste0(replicate(100,sampl
 names(FD_CD2_BarrettsDescription_OAC)<-"report"
 FD_CD3_OesophagusDescription_EoE<-data.frame(paste0(replicate(100,sample(FD_OesophagusDescription_EoE,1,replace=F)),""))
 FD_CD4_OesophagusDescription_Dysplasia<-data.frame(paste0(replicate(100,sample(FD_OesophagusDescription_Dysplasia,1,replace=F)),""))
-FD_CD4OesophagusConclusion2<-data.frame(paste0(replicate(100,sample(FD_OesophagusConclusion2,1,replace=F)),""))
-FD_CD5_OesophagusConclusion_Normal<-data.frame(paste0(replicate(100,sample(FD_OesophagusConclusion_Normal,1,replace=F)),""))
-FD_CD6_OesophagusConclusion_Inflammation<-data.frame(paste0(replicate(100,sample(FD_OesophagusConclusion_Inflammation,1,replace=F)),""))
-FD_CD7_OesophagusConclusion_EoE<-data.frame(paste0(replicate(100,sample(FD_OesophagusConclusion_EoE,1,replace=F)),""))
-FD_CD8_OesophagusConclusion_Dysplasia<-data.frame(paste0(replicate(100,sample(FD_OesophagusConclusion_Dysplasia,1,replace=F)),""))
+FD_CD4OesophagusConclusion2<-data.frame(paste0("Conclusion: ",replicate(100,sample(FD_OesophagusConclusion2,1,replace=F)),""))
+FD_CD5_OesophagusConclusion_Normal<-data.frame(paste0("Conclusion: ",replicate(100,sample(FD_OesophagusConclusion_Normal,1,replace=F)),""))
+FD_CD6_OesophagusConclusion_Inflammation<-data.frame(paste0("Conclusion: ",replicate(100,sample(FD_OesophagusConclusion_Inflammation,1,replace=F)),""))
+FD_CD7_OesophagusConclusion_EoE<-data.frame(paste0("Conclusion: ",replicate(100,sample(FD_OesophagusConclusion_EoE,1,replace=F)),""))
+FD_CD8_OesophagusConclusion_Dysplasia<-data.frame(paste0("Conclusion: ",replicate(100,sample(FD_OesophagusConclusion_Dysplasia,1,replace=F)),""))
 
 
 # d. Add the negatives list in before the conclusion so it is in the correct order
@@ -505,10 +506,10 @@ FD_path_Oesoph$report<-as.character(FD_path_Oesoph$report)
 ###### _______Pathology- Stomach ########################################################################################################################
 
 
-###### _______Pathology- Oesophagus- non Barrett's oesophagus ########################################################################################################################
+###### _______Pathology- Stomach  ########################################################################################################################
 
 # a. Sentence creation with macroscopic observations
-FD_path_SentenceStartStomach<-data.frame(paste0(replicate(1000,sample(FD_StomachMacroscopic_Description,1,replace=F)),""))
+FD_path_SentenceStartStomach<-data.frame(paste0("Macroscopic Description: ",replicate(1000,sample(FD_StomachMacroscopic_Description,1,replace=F)),""," Microscopic Description"))
 
 # b. Get the list of relevant negatives:
 #### May need to have generic list here to be included in all diseases and compartments
@@ -519,10 +520,10 @@ FD_CD2_StomachDescription_Inflammation<-data.frame(paste0(replicate(100,sample(F
 names(FD_CD2_StomachDescription_Inflammation)<-"report"
 FD_CD3_StomachDescription_Description_General<-data.frame(paste0(replicate(100,sample(FD_StomachDescription_Description_General,1,replace=F)),""))
 FD_CD4_StomachDescription_Dysplasia<-data.frame(paste0(replicate(100,sample(FD_StomachDescription_Dysplasia,1,replace=F)),""))
-FD_CD4_StomachConclusion2<-data.frame(paste0(replicate(100,sample(FD_StomachConclusion2,1,replace=F)),""))
-FD_CD5_StomachConclusion_Polyp<-data.frame(paste0(replicate(100,sample(FD_StomachConclusion_Polyp,1,replace=F)),""))
-FD_CD6_StomachConclusion_Inflammation<-data.frame(paste0(replicate(100,sample(FD_StomachConclusion_Inflammation,1,replace=F)),""))
-FD_CD7_StomachConclusion_Cancer<-data.frame(paste0(replicate(100,sample(FD_StomachConclusion_Cancer,1,replace=F)),""))
+FD_CD4_StomachConclusion2<-data.frame(paste0("Conclusion: ",replicate(100,sample(FD_StomachConclusion2,1,replace=F)),""))
+FD_CD5_StomachConclusion_Polyp<-data.frame(paste0("Conclusion: ",replicate(100,sample(FD_StomachConclusion_Polyp,1,replace=F)),""))
+FD_CD6_StomachConclusion_Inflammation<-data.frame("Conclusion: ",paste0(replicate(100,sample(FD_StomachConclusion_Inflammation,1,replace=F)),""))
+FD_CD7_StomachConclusion_Cancer<-data.frame(paste0("Conclusion: ",replicate(100,sample(FD_StomachConclusion_Cancer,1,replace=F)),""))
 
 
 # d. Add the negatives list in before the conclusion so it is in the correct order
@@ -559,29 +560,33 @@ FD_path_Stomach$report<-as.character(FD_path_Stomach$report)
 #and put it in a new column:
 
 
-
 out2$PathReport<-apply(out2, 1, function(x) {
   ifelse(str_detect(x[["out"]],"WritePathReport") & grepl("fundus|antrum|body|stomach",x[["Compartment"]]),sample(FD_path_Stomach$report,1,replace=T),
          ifelse(str_detect(x[["out"]],"WritePathReport") & grepl("duod",x[["Compartment"]]),sample(Final_path_Duodenum$report,1),
                 ifelse(str_detect(x[["out"]],"WritePathReport")  & grepl("Columnar|Barrett",x[["Compartment"]]),sample(FD_path_Barr$report,1),
-                       ifelse(!str_detect(x[["out"]],"WritePathReport") & grepl("GOJ|oesophag",x[["Compartment"]]),sample(FD_path_Oesoph$report,1),
+                       ifelse(str_detect(x[["out"]],"WritePathReport") & grepl("GOJ|oesophag",x[["Compartment"]]),sample(FD_path_Oesoph$report,1),
                               ""))))
   })
 
 out2$PathReport<-gsub("^\\d+$","",out2$PathReport)
+
+out2$report <- ifelse(!grepl("NA", out2$WritePathReport), gsub(".*", "", out2$report), out2$report)
+out2$report<-gsub("BIOPSIES TAKEN.*","biopsy specimens",out2$report)
+out2$PathReport<-paste(out2$report," ",out2$PathReport,"")
+
 #Start cleaning up the columns:
 out2$report<-NULL
 out2$Compartment<-NULL
 out2$WritePathReport<-NULL
+out2$out<-gsub("COMPARTMENT_START.* COMPARTMENT_END","",out2$out)
+
 
 #further tidy up when biopsies not taken
 Indications<-data.frame(Indic)
-names(out3)<-"report"
+names(out2)<-c("report","path")
 
-
-out3<-bulker("GOJ|fundus|oesophag|stomach body|duodenal bulb|antrum|second part of the duodenum|third part of the duodenum",out3)
+out3<-bulker("GOJ|fundus|oesophag|stomach body|duodenal bulb|antrum|second part of the duodenum|third part of the duodenum",out2)
 out3<-listtodf(out3)
-
 
 
 #To do:

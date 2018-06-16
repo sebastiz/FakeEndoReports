@@ -4,7 +4,7 @@
 
 ################################################################ LISTS- Sentence introduction #####################################################################################
 #Import the list of phrases for sentence construction
-FINDINGS <- readLines("/home/rstudio/FakeEndoReports/data/ImportPhrases")
+FINDINGS <- readLines("~/FakeEndoReports/data/ImportPhrases")
 FINDINGS<-gsub("\"","",FINDINGS)
 names(FINDINGS) <- rep("x", length(FINDINGS))
 FINDINGS <- as.list(FINDINGS)
@@ -50,7 +50,7 @@ FD_DilatationDetails<-ListContstructor("FD_DilatationDetails","FD_ContinuityAddi
 ##### LISTS- Continuity replacements random gsub  #####
 FD_ContinuityAdditionals<-ListContstructor("FD_ContinuityAdditionals","END",FINDINGS)
 
-INDICATIONS <- readLines("/home/rstudio/FakeEndoReports/data/OGDIndication")
+INDICATIONS <- readLines("~/FakeEndoReports/data/OGDIndication")
 INDICATIONS<-gsub("\"","",INDICATIONS)
 names(INDICATIONS) <- rep("x", length(INDICATIONS))
 INDICATIONS <- as.list(INDICATIONS)
@@ -61,7 +61,7 @@ FD_Indication<-ListContstructor("START","END",INDICATIONS)
 
 ##### Pathology lists- duodenum #####
 #Import the list of phrases for sentence construction
-PATH_DUODENUM <- readLines("/home/rstudio/FakeEndoReports/data/Path_Duodenum")
+PATH_DUODENUM <- readLines("~/FakeEndoReports/data/Path_Duodenum")
 PATH_DUODENUM<-gsub("\"","",PATH_DUODENUM)
 names(PATH_DUODENUM) <- rep("x", length(PATH_DUODENUM))
 PATH_DUODENUM <- as.list(PATH_DUODENUM)
@@ -84,7 +84,7 @@ FD_DuodenumMacroscopic_Description<-ListContstructor("Macroscopic_Description","
 
 #####Pathology lists - Barrett's oesophagus#####
 #Import the list of phrases for sentence construction
-PATH_BARRETTS <- readLines("/home/rstudio/FakeEndoReports/data/Path_Barretts")
+PATH_BARRETTS <- readLines("~/FakeEndoReports/data/Path_Barretts")
 PATH_BARRETTS<-gsub("\"","",PATH_BARRETTS)
 names(PATH_BARRETTS) <- rep("x", length(PATH_BARRETTS))
 PATH_BARRETTS <- as.list(PATH_BARRETTS)
@@ -103,7 +103,7 @@ FD_BarrettsConclusion_D<-ListContstructor("Conclusion_D","END",PATH_BARRETTS)
 
 #####Pathology lists -  oesophagus (non-Barrett's) #####
 #Import the list of phrases for sentence construction
-PATH_OESOPHAGUS <- readLines("/home/rstudio/FakeEndoReports/data/Path_Oeosophagus")
+PATH_OESOPHAGUS <- readLines("~/FakeEndoReports/data/Path_Oeosophagus")
 PATH_OESOPHAGUS<-gsub("\"","",PATH_OESOPHAGUS)
 names(PATH_OESOPHAGUS) <- rep("x", length(PATH_OESOPHAGUS))
 PATH_OESOPHAGUS <- as.list(PATH_OESOPHAGUS)
@@ -124,7 +124,7 @@ FD_OesophagusConclusion_Dysplasia<-ListContstructor("Conclusion_Dysplasia","END"
 
 #####Pathology lists -  stomach #####
 #Import the list of phrases for sentence construction
-PATH_STOMACH <- readLines("/home/rstudio/FakeEndoReports/data/Path_Stomach")
+PATH_STOMACH <- readLines("~/FakeEndoReports/data/Path_Stomach")
 PATH_STOMACH<-gsub("\"","",PATH_STOMACH)
 names(PATH_STOMACH) <- rep("x", length(PATH_STOMACH))
 PATH_STOMACH <- as.list(PATH_STOMACH)
