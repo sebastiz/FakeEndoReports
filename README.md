@@ -1,6 +1,6 @@
 # FakeEndoReports
 
-![Logo](/home/rstudio/FakeEndoReports/img/FakeEndoDataLogo.png)
+![](~/FakeEndoReports/img/FakeEndoDataLogo.png)
 
 The idea of this project is to create synthesised Endoscopic reports, starting with gastroscopies, so that data scientists can utilise gastroenterology data to develop better visualisations of gastroenterology data
 
