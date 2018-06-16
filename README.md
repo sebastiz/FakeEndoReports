@@ -1,6 +1,6 @@
 # FakeEndoReports
 
-![](~/FakeEndoReports/img/FakeEndoDataLogo.png)
+
 # <img src="img/FakeEndoDataLogo.png" align="right" />
 
 
