@@ -20,7 +20,7 @@ To install you will need to install the developing package. with
 You can then run the script FakeDataGenerator.R which is well documented and describes all the steps to create the Endoscopic and Pathological data sets
 
 
-The data sets are created as follows:
+##Dataset creation
 
 **1. Creation of the endoscopy datasets.**
 
