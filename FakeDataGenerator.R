@@ -600,36 +600,9 @@ out3<-listtodf(out3)
 
 #Now you have to tie the pathology reports to the endoscopy
 
-##### LISTS- Sentence introduction #####
-# Distribute the reports so that there are empties and Normals
-# #Need compartment specific indication- can get from the endoscopic indication when this is done
-# CLINICAL DETAILS
-# Alternating diarrhoea and constipation ? microscopic colitis.
-#
-# #Derive this from the Nature of the Specimen
-# MACROSCOPICAL DESCRIPTION
-# Nature of specimen as stated on request form = ' x2 right colon bx, x 2 left
-#   colon bx.'.
-# Nature of specimen as stated on pot = ' x2 right colon bx, x 2 left colon
-#   bx.'.
-#
-# Four pieces of tissue, the largest measuring 3 x 1 x 1 mm and the smallest 2 x
-# 1 x 1 mm, received on a pointed cellulose strip.
-# All in one.
-#
-# Submitted by: Peter Sounthararajah 20.04.16
-# sch
-#
-# #Will need to gets the varieties of this again based on the caompartment sampled- may need to categorise phrases based on compartment taken eg eoe phrases/ Barrett's phrases etc.
-# HISTOLOGY
-# These biopsies of large bowel mucosa are within normal histological limits.
-# There is no evidence of microscopic colitis.
-#
-# DIAGNOSIS
-# Right and left colon, biopsies:
-#   - normal.
-# Reported by Dr Helene McCarthy and Dr Ula Mahadeva /28-04-16
-# T67995, M14070, M00120
+                    
+                    
+                    
 
 
 #To do:
