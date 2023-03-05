@@ -1,9 +1,11 @@
 library(stringr)
 library(rprojroot)
+library(randomNames)
+
 myroot<-rprojroot::find_root("DESCRIPTION")
 #Get the out to be dataframe again after function
-source("~/FakeEndoReports/R/reportMaker.R")
-source("~/FakeEndoReports/R/listMaker.R")
+source(here::here("R","reportMaker.R"))
+source(here::here("R","listMaker.R"))
 
 
 
@@ -179,7 +181,7 @@ Compartment<-gsub("Columnar oesophag","Barrett",Compartment)
 
 #The principle here is a. Add the endoscopist's impression of the possible diagnosis based on the lesion and location and b.) Add details about which biopsies were taken.
 #Import the list of phrases for sentence construction
-LOCATION_BIOPSES <- readLines("~/FakeEndoReports/data/LocationManagementAndBiopsiesPhrases")
+LOCATION_BIOPSES <- readLines(here::here("data","LocationManagementAndBiopsiesPhrases"))
 LOCATION_BIOPSES<-gsub("\"","",LOCATION_BIOPSES)
 names(LOCATION_BIOPSES) <- rep("x", length(LOCATION_BIOPSES))
 LOCATION_BIOPSES <- as.list(LOCATION_BIOPSES)
@@ -299,7 +301,7 @@ out<-listtodf(out)
   #out$Bx<-paste(out$pathreport,out$NumberBiopsies,out$Compartment)
   out<-listtodf(out)
 
-
+###################################################### Bulking ###################################################################################################
   # a. Bulking
   #Other diagnoses of relevance
   #paste to the end of the sentences: BUT need to make sure there is no repetition of the already existing words
@@ -309,8 +311,12 @@ out<-listtodf(out)
   out<-paste(out$out,"COMPARTMENT_START",Compartment,"BIOPSIES TAKEN:", pathreport,"NUMBER OF BIOPSIES:",NumberBiopsies,"COMPARTMENT_END")
   out<-listtodf(out)
 
-  # out<-bulker("GOJ|fundus|oesophag|stomach body|duodenal bulb|antrum|second part of the duodenum|third part of the duodenum")
+   out<-bulker("GOJ|fundus|oesophag|stomach body|duodenal bulb|antrum|second part of the duodenum|third part of the duodenum",out)
   # out<-listtodf(out)
+
+##################################################################################################################################################################
+
+
 
 
 
@@ -337,6 +343,26 @@ Indic<-paste0(replicate(1000,sample(FD_Indication,1,replace=F)),"")
 #Merge the Indication in to the Pathology report:
 out$out<-paste0("INDICATIONS FOR PROCEDURE: ",Indic," FINDINGS: ",out$out)
 out<-listtodf(out)
+
+############################################################## 10. Recommendations #######################################################################################
+
+
+
+
+
+###############################################################################################################################################################################
+
+
+
+############################################################## 9. Follow-up: #######################################################################################
+
+
+
+###############################################################################################################################################################################
+
+
+
+
 ############################################################## 10. Pathology functions #######################################################################################
 #The psinciples of creating the pathology datasets are as follows
 #1. Take from the endoscopy report which compartment was sampled (eg stomach/oesophagus etc)
@@ -587,6 +613,43 @@ names(out2)<-c("report","path")
 
 out3<-bulker("GOJ|fundus|oesophag|stomach body|duodenal bulb|antrum|second part of the duodenum|third part of the duodenum",out2)
 out3<-listtodf(out3)
+
+
+
+
+
+
+############################################################################################################################
+###################################### 12. Top part of the endoscopy report ################################################
+############################################################################################################################
+
+samplenumber <- 2000
+HospitalNumberID <- paste("Hospital Number: ", sample(c(LETTERS)),
+                          sample(1e+06:9999999, (samplenumber - 1900), replace = T),
+                          sep = ""
+)
+NHS_Trust <- replicate(samplenumber, c("Hospital: Random NHS Foundation Trust"))
+Patient_Name <- paste("Patient Name: ", randomNames::randomNames(
+  samplenumber,
+  "first", "last"
+))
+Date_of_Birth <- paste("DOB: ", generator::r_date_of_births(samplenumber,
+                                                            start = as.Date("1900-01-01"), end = as.Date("1999-01-01")
+))
+GeneralPractictioner <- paste("General Practitioner: Dr. ",
+                              randomNames::randomNames(samplenumber, "first", "last"),
+                              sep = ""
+)
+Date_of_ProcedureAll <- generator::r_date_of_births(samplenumber,
+                                                    start = as.Date("2001-01-01"), end = as.Date("2017-01-01")
+)
+
+
+############################################################################################################################
+############################################################################################################################
+############################################################################################################################
+
+
 
 
 #To do:

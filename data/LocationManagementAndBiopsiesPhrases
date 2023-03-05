@@ -1,89 +1,472 @@
 -----------------------------------------------------------------FD_StomachPolypDescriptors
-The gastric polyp looks fundic.
-The gastric polyp looks malignant.
-The gastric polyp looks adenomatous.
-The gastric polyp looks hyperplastic.
+The gastric polyp appears fundic with a smooth surface and no vascularization.
+Characterized by an irregular surface and size, the gastric polyp appears malignant.
+The gastric polyp exhibits an adenomatous morphology with tubular and villous growth patterns.
+The hyperplastic gastric polyp presents with a smooth surface and regular shape.
+With a round shape and no sign of dysplasia, the gastric polyp appears fundic.
+The gastric polyp presents with an irregular shape, ulceration, and invasive margins, suggestive of a malignant process.
+The gastric polyp appears adenomatous with a villous or tubular structure and high-grade dysplasia.
+The hyperplastic gastric polyp presents with a regular shape and no signs of atypical cells.
+The gastric polyp exhibits a fundic morphology with a pale surface and absence of glandular elements.
+The gastric polyp appears malignant with a nodular surface, irregular shape, and invasive borders.
+The gastric polyp is adenomatous, with a villous architecture and atypical glandular cells.
+The hyperplastic gastric polyp presents with a smooth surface and no evidence of glandular dysplasia.
+The gastric polyp appears fundic with a smooth surface and regular shape, suggestive of a benign process.
+The gastric polyp appears malignant, exhibiting a large size and signs of invasion into surrounding tissue.
+The gastric polyp exhibits an adenomatous morphology with a dysplastic glandular structure and atypical cells.
+The hyperplastic gastric polyp presents with a regular shape and a smooth surface, suggesting a non-neoplastic process.
+The gastric polyp appears fundic, with a pale surface and no evidence of dysplastic changes.
+The gastric polyp looks malignant, presenting with an irregular surface, size, and signs of invasion.
+The gastric polyp exhibits an adenomatous morphology, with a villous or tubular growth pattern and moderate dysplasia.
+The hyperplastic gastric polyp presents with a smooth surface and regular shape, suggestive of a non-cancerous process.
+The gastric polyp appears as a sessile growth on the mucosal surface, with a smooth and regular contour.
+A well-defined, elevated gastric polyp is observed on the antral mucosa, with a nodular surface.
+Multiple polyps with variable size are seen throughout the gastric mucosa, suggestive of familial adenomatous polyposis.
+A solitary gastric polyp is noted in the fundus, with a broad-based attachment and irregular surface.
+A pedunculated gastric polyp is observed in the antrum, with a smooth and rounded surface.
+A hyperplastic gastric polyp is seen in the cardia, with a serrated and folded surface.
+A gastric polyp with a central ulceration is observed in the corpus, suggestive of neoplastic changes.
+A large, irregular gastric polyp is noted in the body of the stomach, with a nodular and friable surface.
+Multiple gastric polyps are seen in the antrum, with a clustered distribution and variable surface contour.
+A gastric polyp is noted in the cardia, with a thickened stalk and papillary surface.
+A gastric polyp with a central depression is observed in the fundus, suggestive of an inflamed and necrotic lesion.
+A gastric polyp with a broad-based attachment is noted in the corpus, with a smooth and dome-shaped surface.
+A gastric polyp is seen in the pylorus, with a tubular and elongated shape and a smooth surface.
+A gastric polyp with a broad stalk is observed in the antrum, with a lobulated surface and irregular contour.
+A gastric polyp with a broad base and variable surface is seen in the fundus, suggestive of a mixed hyperplastic and adenomatous lesion.
+A solitary gastric polyp is noted in the body, with a sessile attachment and nodular surface.
+A gastric polyp with a broad, flat surface is observed in the pylorus, with a smooth and regular contour.
+A gastric polyp with a polypoid shape is seen in the cardia, with a smooth and rounded surface.
+A gastric polyp with a smooth surface and pedunculated stalk is noted in the corpus.
+A gastric polyp with a broad-based attachment and lobulated surface is observed in the antrum, suggestive of an adenomatous lesion.
+
 -----------------------------------------------------------------FD_StomachUlcerDescriptors
-The gastric ulcer looks malignant.
-The ulceration is severe and there are multiple areas affected.
-The ulceration is likely NSAID related.
-Ulceration is likely Helicobacter pylori related.
+The gastric lesion appears malignant with irregular borders and surrounding erythema.
+Characterized by a distinct loss of mucosal tissue, the severe ulceration presents with a nodular surface.
+Signs of NSAID-induced injury are evident in the gastric ulcer, which appears to have a punched-out appearance.
+Helicobacter pylori infection is the likely cause of the ulcer, which exhibits a fibrous base and active bleeding.
+Accompanied by white exudate and a yellowish base, the gastric ulcer presents with a cobblestone appearance.
+The patient's medical history and the ulcer's rugose surface suggest a chronic inflammatory process.
+The gastric lesion appears malignant, with an irregular shape and size, and a raised edge.
+The severe ulceration presents with a depth greater than 5 mm and an irregular border.
+The flat surface with no elevation and thickened border of the ulcer suggests a chronic, long-standing condition.
+Characterized by a distinct loss of mucosal tissue and surrounded by erythema, the severe ulceration presents with a nodular surface.
+The gastric ulcer exhibits signs of NSAID-induced injury, with a fibrous base and punched-out appearance.
+The ulceration's irregular shape and size, along with a yellowish base, suggest a possible malignant process.
+Accompanied by white exudate and a cobblestone appearance, the gastric ulcer is likely caused by Helicobacter pylori infection.
+The patient's medical history, along with the ulcer's rugose surface and irregular border, suggest a chronic inflammatory process.
+The gastric lesion exhibits an irregular shape and size, with a raised edge and depth greater than 5 mm.
+Surrounded by erythema and exhibiting a nodular surface, the severe ulceration presents with a distinct loss of mucosal tissue.
+The gastric ulcer presents with an irregular border and a fibrous base, suggestive of NSAID-induced injury.
+The ulceration exhibits a cobblestone appearance and a yellowish base, suggestive of Helicobacter pylori infection.
+The patient's medical history, along with the ulcer's rugose surface and flat appearance, suggest a chronic, long-standing condition.
+The gastric lesion appears malignant, accompanied by active bleeding and a punched-out appearance.
 -----------------------------------------------------------------FD_StomachStrictureDescriptors
-The stricture is relative to the stomach body.
-The is the impression of extrinsic compression but in fact the stricture is likely mucosal.
+The gastric stricture is located in the body of the stomach, causing narrowing of the lumen.
+The impression of extrinsic compression is present, but the gastric stricture is likely due to mucosal changes.
+The gastric stricture appears to be located in the body of the stomach, with a circumferential narrowing of the lumen.
+The impression of extrinsic compression is observed, although the gastric stricture is likely due to inflammatory changes.
+The gastric stricture is relative to the body of the stomach and appears to involve the mucosa and submucosa layers.
+Despite the impression of extrinsic compression, the gastric stricture is likely the result of fibrotic changes in the mucosa.
+The gastric stricture is located in the body of the stomach, with a smooth surface and concentric narrowing of the lumen.
+The gastric stricture appears to be mucosal, despite the initial impression of extrinsic compression.
+The gastric stricture is relative to the stomach body and exhibits a partially obstructing appearance.
+The gastric stricture is likely the result of chronic inflammation and fibrosis, rather than extrinsic compression.
+The gastric stricture is located in the body of the stomach, with a short segment of circumferential narrowing.
+The gastric stricture appears to be caused by mucosal changes, despite the initial impression of extrinsic compression.
+The gastric stricture is relative to the body of the stomach, with a smooth surface and regular shape.
+The gastric stricture is likely due to fibrotic changes in the mucosa, rather than extrinsic compression.
+The gastric stricture appears to involve the mucosa and submucosa layers, with a concentric narrowing of the lumen.
+Despite the impression of extrinsic compression, the gastric stricture is likely the result of inflammatory changes in the mucosa.
+The gastric stricture is relative to the body of the stomach, with a partially obstructing appearance.
+The gastric stricture appears to be caused by chronic inflammation and fibrosis in the mucosa, rather than extrinsic compression.
+The gastric stricture is located in the body of the stomach, with an irregular surface and circumferential narrowing of the lumen.
+The gastric stricture is likely due to inflammatory changes in the mucosa, despite the initial impression of extrinsic compression.
+The gastric stricture appears as a narrowing of the lumen, with a smooth and regular contour in the antrum.
+A circumferential gastric stricture is observed in the body of the stomach, with a rigid and fibrotic appearance.
+A focal, ulcerated gastric stricture is noted in the fundus, with a nodular and irregular surface.
+A gastric stricture with a web-like appearance is seen in the cardia, suggestive of an eosinophilic disorder.
+A non-circumferential gastric stricture is observed in the antrum, with a concentric narrowing and smooth surface.
+A gastric stricture with extrinsic compression is seen in the corpus, with a displaced and distorted appearance.
+A long-segment gastric stricture is noted in the body of the stomach, with a stenotic and irregular contour.
+A short-segment gastric stricture is observed in the pylorus, with a narrowed and distorted appearance.
+A gastric stricture with an overlying ulceration is seen in the antrum, suggestive of a peptic stricture.
+A gastric stricture with a smooth and tapered appearance is noted in the fundus, suggestive of a benign fibrotic lesion.
+A gastric stricture with a smooth and nodular surface is observed in the cardia, suggestive of a malignant lesion.
+A gastric stricture with extramural compression is seen in the corpus, suggestive of a neoplastic process.
+A focal, eccentric gastric stricture is noted in the body, with a rigid and fibrotic appearance.
+A gastric stricture with a funnel-shaped appearance is observed in the pylorus, with a smooth and regular contour.
+A circumferential gastric stricture with an overlying mucosal lesion is seen in the fundus, suggestive of a malignant tumor.
+A gastric stricture with a smooth surface and displaced mucosal folds is noted in the antrum, suggestive of a benign lesion.
+A gastric stricture with a nodular surface and irregular contour is observed in the body, suggestive of a malignant tumor.
+A short-segment gastric stricture with overlying inflammation and ulceration is seen in the pylorus, suggestive of an inflammatory disorder.
+A gastric stricture with extramucosal compression is noted in the cardia, with a displaced and distorted appearance.
+A gastric stricture with a smooth and tapered appearance is observed in the corpus, suggestive of a benign fibrotic process.
 -----------------------------------------------------------------FD_StomachInflammationDescriptors
-The inflammatory changes are likely to be Helicobacter related.
-Portal hypertensive gastropathy is likely responsible for the inflammatory changes.
-The inflammation is in an odd distribution.
+The gastric inflammation is characterized by erythema and edema of the mucosa.
+The gastric inflammation appears to involve the antrum, with a diffuse and patchy appearance.
+The gastric inflammation is severe, with a diffuse and confluent pattern throughout the body of the stomach.
+The gastric inflammation is accompanied by hyperemia and petechiae on the mucosal surface.
+The gastric inflammation appears to be chronic, with atrophy and intestinal metaplasia in the mucosa.
+The gastric inflammation is focal and appears to involve the fundus of the stomach.
+The gastric inflammation is characterized by the presence of neutrophils and lymphocytes in the mucosal layer.
+The gastric inflammation appears to be associated with the presence of Helicobacter pylori bacteria.
+The gastric inflammation appears to be diffuse and involves both the body and antrum of the stomach.
+The gastric inflammation is severe and involves ulceration and necrosis of the mucosa.
+The gastric inflammation appears to be chronic, with the presence of lymphoid follicles in the mucosa.
+The gastric inflammation is characterized by the presence of eosinophils and mast cells in the mucosal layer.
+The gastric inflammation appears to be associated with the use of nonsteroidal anti-inflammatory drugs (NSAIDs).
+The gastric inflammation appears to be mild, with erythema and edema limited to the antrum of the stomach.
+The gastric inflammation is diffuse and characterized by the presence of plasma cells in the mucosal layer.
+The gastric inflammation appears to be associated with autoimmune gastritis, with the presence of antibodies against parietal cells.
+The gastric inflammation is characterized by the presence of lymphoid aggregates in the mucosal layer.
+The gastric inflammation appears to be limited to the body of the stomach, with a patchy and irregular appearance.
+The gastric inflammation is severe, with the presence of abscesses and granulomas in the mucosa.
+The gastric inflammation appears to be associated with the use of proton pump inhibitors (PPIs), with the presence of rebound hypergastrinemia.
+Erythematous patches with erosions and exudates are seen in the gastric mucosa, suggestive of acute gastritis.
+The gastric mucosa appears diffusely congested with no distinct ulcerations, suggestive of non-specific chronic gastritis.
+Focal areas of erythema with no exudate are observed in the gastric antrum, suggestive of mild gastritis.
+Severe diffuse erythema with erosions and hemorrhages are noted in the gastric mucosa, suggestive of severe acute gastritis.
+The gastric mucosa appears thickened and edematous, with areas of ulceration and hemorrhage, suggestive of chronic atrophic gastritis.
+Erythematous and edematous mucosa is observed in the antrum and body of the stomach, suggestive of diffuse antral gastritis.
+Erythematous streaks with punctate hemorrhages are seen in the gastric mucosa, suggestive of superficial gastritis.
+Multiple small erosions with exudates are observed in the antrum and body of the stomach, suggestive of erosive gastritis.
+The gastric mucosa appears diffusely thickened with nodular lesions and areas of ulceration, suggestive of lymphocytic gastritis.
+Severe atrophic changes with no distinct erythema or ulceration are noted in the gastric mucosa, suggestive of severe chronic gastritis.
+The gastric mucosa appears diffusely erythematous with no distinct erosions, suggestive of superficial gastritis.
+Focal areas of erythema with no exudate are observed in the gastric fundus, suggestive of mild chronic gastritis.
+Diffuse erythema with erosions and exudates are seen in the antrum and body of the stomach, suggestive of acute erosive gastritis.
+The gastric mucosa appears diffusely thickened with a cobblestone appearance and no ulcerations, suggestive of granulomatous gastritis.
+Erythematous patches with focal ulceration are noted in the gastric antrum, suggestive of acute erosive gastritis.
+The gastric mucosa appears diffusely atrophic with a smooth surface and no erosions, suggestive of chronic gastritis with intestinal metaplasia.
+Focal areas of erythema and hemorrhage are seen in the gastric fundus, suggestive of mild gastritis.
+The gastric mucosa appears diffusely erythematous with erosions and exudates, suggestive of acute hemorrhagic gastritis.
+Erythematous and edematous mucosa is observed in the gastric antrum, with no distinct ulcerations, suggestive of antral gastritis.
+The gastric mucosa appears diffusely thickened with multiple erosions and exudates, suggestive of erosive gastritis with bleeding.
 -----------------------------------------------------------------FD_StomachNoduleDescriptors
 The nodular changes may represent early fundic gland polyps.
 The nodules have an abnormal pit pattern and may represent an early gastric cancer.
+A well-circumscribed, firm nodule is seen in the gastric body, suggestive of a gastrointestinal stromal tumor (GIST).
+The gastric mucosa appears elevated with a smooth surface and no ulcerations, suggestive of a submucosal gastric nodule.
+A polypoid, solid nodule is observed in the antrum of the stomach, suggestive of a gastric adenoma.
+A nodular lesion is seen in the gastric fundus, with a central umbilication and surrounding erythema, suggestive of a gastric leiomyoma.
+The gastric mucosa appears thickened with multiple small nodules, suggestive of a lymphoproliferative disorder such as MALT lymphoma.
+A large, ulcerated nodule is noted in the gastric antrum, with surrounding erythema and exudates, suggestive of a malignant gastric neoplasm.
+A small, submucosal nodule is observed in the gastric body, suggestive of a gastric lipoma.
+The gastric mucosa appears irregularly thickened with a nodular appearance, suggestive of diffuse gastric carcinoma.
+A nodular lesion with overlying mucosal ulceration is seen in the gastric fundus, suggestive of a gastric neuroendocrine tumor.
+A large, lobulated nodule is observed in the gastric body, suggestive of a gastrointestinal autonomic nerve tumor (GANT).
+A small, solid nodule is seen in the gastric antrum, suggestive of a gastric schwannoma.
+A nodular lesion with surrounding erythema and nodularity of the overlying mucosa is observed in the gastric cardia, suggestive of a malignant gastric neoplasm.
+The gastric mucosa appears elevated with a smooth surface and no erythema, suggestive of a gastric polypoid nodule.
+A solid, nodular lesion is seen in the gastric body, suggestive of a gastric leiomyosarcoma.
+A well-circumscribed, pedunculated nodule is observed in the gastric antrum, suggestive of a gastric fibroma.
+A nodular lesion with surrounding erythema and exudates is seen in the gastric fundus, suggestive of a malignant gastric neoplasm.
+A small, solid nodule is observed in the gastric body, suggestive of a gastric carcinoid tumor.
+The gastric mucosa appears thickened with a nodular surface, suggestive of a diffuse lymphoid hyperplasia.
+A large, ulcerated nodule with central necrosis is seen in the gastric antrum, suggestive of a gastric adenocarcinoma.
+A nodular lesion is observed in the gastric cardia, with surrounding erythema and nodularity of the overlying mucosa, suggestive of a malignant gastric neoplasm.
 -----------------------------------------------------------------FD_OesophagealPolypDescriptors
-The regularity of the nodular areas suggests that they are regenerative
-oesophagus at (cm).
-The polypoid lesion looks postinflammatory.
-The stalked nature of the polyp makes it amenable to a polypectomy rather than EMR.
-The lesion is classifiable as Paris IIa.
-This is a Paris IIa/c lesion.
-This is a Paris IIb lesion.
-Closer examination of the lesion is necessary +/- EUS.
+A smooth, protruding mass is seen in the distal esophagus, suggestive of an esophageal polyp.
+The esophageal mucosa appears elevated with a smooth surface and no ulcerations, suggestive of a submucosal esophageal polyp.
+A polypoid, solid lesion is observed in the mid-esophagus, suggestive of an esophageal adenoma.
+A sessile, nodular lesion is seen in the distal esophagus, suggestive of an esophageal papilloma.
+The esophageal mucosa appears irregularly thickened with a nodular appearance, suggestive of diffuse esophageal carcinoma.
+A small, submucosal nodule is observed in the distal esophagus, suggestive of an esophageal lipoma.
+The esophageal mucosa appears elevated with a smooth surface and no erythema, suggestive of an esophageal polypoid lesion.
+A large, ulcerated lesion is noted in the distal esophagus, with surrounding erythema and exudates, suggestive of a malignant esophageal neoplasm.
+A nodular lesion is seen in the mid-esophagus, with a central umbilication and surrounding erythema, suggestive of an esophageal leiomyoma.
+The esophageal mucosa appears thickened with multiple small nodules, suggestive of a lymphoproliferative disorder such as lymphoma.
+A small, solid nodule is seen in the proximal esophagus, suggestive of an esophageal schwannoma.
+A nodular lesion with surrounding erythema and nodularity of the overlying mucosa is observed in the mid-esophagus, suggestive of a malignant esophageal neoplasm.
+A well-circumscribed, pedunculated lesion is observed in the distal esophagus, suggestive of an esophageal fibroma.
+A nodular lesion with overlying mucosal ulceration is seen in the proximal esophagus, suggestive of an esophageal neuroendocrine tumor.
+The esophageal mucosa appears elevated with a smooth surface and no erythema, suggestive of an esophageal polyp.
+A large, lobulated mass is observed in the mid-esophagus, suggestive of a leiomyosarcoma.
+A nodular lesion is observed in the proximal esophagus, with surrounding erythema and nodularity of the overlying mucosa, suggestive of a malignant esophageal neoplasm.
+A small, solid nodule is seen in the mid-esophagus, suggestive of an esophageal carcinoid tumor.
+The esophageal mucosa appears thickened with a nodular surface, suggestive of a diffuse lymphoid hyperplasia.
+A well-circumscribed, firm nodule is seen in the distal esophagus, suggestive of an esophageal gastrointestinal stromal tumor (GIST).
+Upon endoscopic examination of the oesophagus, a 2 cm Paris IIa/c polypoid lesion was observed. The lesion had a smooth surface and appeared to be pedunculated.
+An oesophageal polyp was detected during endoscopy, located approximately 10 cm from the incisors. The lesion had a nodular surface and measured 1.5 cm in diameter.
+In the oesophagus, a Paris IIa nodule was noted, measuring 0.8 cm in diameter. The lesion had a smooth surface and appeared to be sessile.
+During endoscopy, a 3 cm nodular lesion was detected in the oesophagus, located approximately 20 cm from the incisors. The lesion appeared to be sessile and had a regular nodular appearance.
+Upon endoscopic examination of the oesophagus, a Paris IIb polypoid lesion was observed, measuring 1.5 cm in diameter. The lesion had a nodular surface and appeared to be pedunculated.
+A nodular lesion was observed in the oesophagus during endoscopy, located at approximately 12 cm from the incisors. The lesion had a smooth surface and measured 2 cm in diameter.
+In the oesophagus, a Paris IIa/c polypoid lesion was detected during endoscopy, measuring 1 cm in diameter. The lesion had a nodular surface and appeared to be sessile.
+An oesophageal polyp was detected during endoscopy, located approximately 18 cm from the incisors. The lesion had a nodular surface and measured 1.2 cm in diameter.
+During endoscopic examination of the oesophagus, a Paris IIa nodular lesion was observed, measuring 0.5 cm in diameter. The lesion appeared to be sessile and had a regular nodular appearance.
+Upon endoscopy, a 2.5 cm Paris IIb polypoid lesion was detected in the oesophagus, located approximately 15 cm from the incisors. The lesion had a nodular surface and appeared to be pedunculated.
+In the oesophagus, a Paris IIa/c polypoid lesion was observed during endoscopy, measuring 0.7 cm in diameter. The lesion had a nodular surface and appeared to be sessile.
+During endoscopy, a 1.8 cm nodular lesion was detected in the oesophagus, located approximately 8 cm from the incisors. The lesion appeared to be sessile and had a regular nodular appearance.
+Upon endoscopic examination of the oesophagus, a Paris IIa polypoid lesion was observed, measuring 1.3 cm in diameter. The lesion had a smooth surface and appeared to be pedunculated.
+An oesophageal polyp was detected during endoscopy, located approximately 14 cm from the incisors. The lesion had a nodular surface and measured 1 cm in diameter.
+In the oesophagus, a Paris IIa/c nodular lesion was detected during endoscopy, measuring 0.6 cm in diameter. The lesion appeared to be sessile and had a regular nodular appearance.
+A Paris IIb polypoid lesion was observed in the oesophagus during endoscopy, measuring 2.2 cm in diameter. The lesion had a nodular surface and appeared to be pedunculated.
 -----------------------------------------------------------------FD_OesophagealUlcerDescriptors
-The ulceration was semi circumferential.
-The ulceration is suspicious for an adenocarcinoma.
-The ulceration is likely to be a refulx oesophagitis.
-The ulceration and its position is suggestive of a pill oesophagitis.
+The oesophageal ulcer appears to be a shallow, non-healing lesion with a diameter of approximately 1 cm.
+Upon inspection, the oesophageal ulcer appears to be a raised, erythematous area with a central crater.
+The oesophageal ulcer exhibits irregular borders and surrounding inflammation, indicating a potentially malignant process.
+Examination of the oesophageal ulcer reveals a deep, necrotic base with surrounding granulation tissue.
+The oesophageal ulcer exhibits a punched-out appearance, suggestive of a peptic ulcer disease etiology.
+Upon endoscopic examination, the oesophageal ulcer appears to be a superficial erosion with minimal surrounding inflammation.
+The oesophageal ulcer is characterized by a thickened and hyperemic mucosa, suggestive of a chronic inflammatory process.
+The oesophageal ulcer presents as a sharply demarcated lesion with smooth borders and a clean base.
+Inspection of the oesophageal ulcer reveals an elevated, nodular appearance, consistent with a malignancy.
+The oesophageal ulcer is characterized by a fibrinous exudate overlying a deep, ulcerated base.
+Examination of the oesophageal ulcer reveals a serpiginous, irregular margin with a central area of necrosis.
+The oesophageal ulcer is characterized by a friable, exudative surface with surrounding erythema and edema.
+The oesophageal ulcer appears to be a linear, longitudinally oriented lesion with associated mucosal edema.
+Inspection of the oesophageal ulcer reveals a circumferential, annular lesion with a central area of ulceration.
+The oesophageal ulcer exhibits a thickened and irregular mucosal surface with a prominent central depression.
+The oesophageal ulcer appears to be a well-demarcated, circular lesion with a central area of necrosis.
+Examination of the oesophageal ulcer reveals a raised, cobblestone appearance with a central area of necrosis and surrounding inflammation.
+The oesophageal ulcer is characterized by a nodular and irregular surface with a central area of ulceration.
+Inspection of the oesophageal ulcer reveals a diffusely inflamed and ulcerated mucosa with scattered areas of granulation tissue.
+The oesophageal ulcer exhibits a friable, hemorrhagic surface with surrounding erythema and exudate, suggestive of an infectious process.
 -----------------------------------------------------------------FD_OesophagealStrictureDescriptors
-The stricture is likely malignant.
-This is suggestive of eosinophillic oesophagitis.
+At 22cm from the incisors, a circumferential stricture is observed in the oesophagus.
+Upon inspection, the mucosa proximal to the stricture shows a slightly erythematous appearance, whereas the distal mucosa appears normal.
+The stricture appears smooth and regular in contour, without any signs of erosion or ulceration.
+The severe narrowing of the oesophageal lumen at the stricture site permits only a small-caliber endoscope to traverse through.
+There is no evidence of exudate or bleeding at the stricture location.
+Biopsy specimens obtained from the stricture reveal squamous mucosa with mild chronic inflammation.
+No indication of Barrett's oesophagus or dysplasia is observed in the biopsies.
+The stricture located 22cm from the incisors appears to be a fixed, non-dilatable lesion.
+The mucosal surface proximal to the stricture appears mildly ulcerated, while the distal mucosa is normal.
+The stricture appears to have a smooth, regular contour without any visible masses or ulcers.
+The narrowing of the oesophageal lumen at the stricture site is severe and only permits passage of a small-caliber endoscope.
+No evidence of bleeding or exudate is observed at the stricture site.
+At 22cm from the incisors, a circumferential stricture is visualized in the oesophagus with a smooth and regular contour.
+The mucosal surface proximal to the stricture appears mildly erythematous, while the distal mucosa appears normal.
+The severe narrowing of the oesophageal lumen at the stricture site is visible, and only a small-caliber endoscope can be passed through.
+No evidence of exudate or bleeding is noted at the stricture site.
 -----------------------------------------------------------------FD_OesophagealInflammationDescriptors
-The oesophageal inflammation is non-descript.
-The inflammation may be acid reflux related.
+Upon examination, there appears to be diffuse erythema and friability of the oesophageal mucosa, consistent with a diagnosis of oesophagitis.
+The oesophageal mucosa appears to be diffusely inflamed with scattered erosions and petechiae, indicative of mild reflux oesophagitis.
+There are multiple small, discrete areas of erythema in the oesophageal mucosa, suggestive of erosive oesophagitis.
+The oesophageal mucosa is erythematous and friable, with areas of exudate and sloughing consistent with moderate oesophagitis.
+There is diffuse oesophageal erythema and edema, with punctate erosions and areas of fibrin deposition indicative of severe oesophagitis.
+The oesophageal mucosa appears thickened and reddened, with multiple shallow ulcers scattered throughout, consistent with infectious oesophagitis.
+There is diffuse erythema of the oesophageal mucosa with prominent exudate and friability, suggestive of viral oesophagitis.
+The oesophageal mucosa is diffusely erythematous with scattered erosions and petechiae, consistent with medication-induced oesophagitis.
+There is erythema and mild edema of the oesophageal mucosa, with scattered small ulcers and exudate, suggestive of chemical oesophagitis.
+The oesophageal mucosa is diffusely erythematous and edematous, consistent with active inflammation.
+At the gastro-oesophageal junction, there is visible erythema and loss of vascular pattern.
+The oesophageal mucosa appears thickened and friable, with diffuse erosions and ulcerations.
+There are scattered white plaques consistent with candida infection superimposed on the inflamed mucosa.
+The mucosa shows multiple linear ulcers, suggestive of herpes simplex virus infection.
+The endoscopic appearance of the oesophageal mucosa is consistent with eosinophilic oesophagitis.
+There are multiple raised, nodular areas of mucosa, suggestive of granulomatous inflammation.
+The oesophageal mucosa appears normal except for a localized area of erythema and edema.
+A patchy distribution of erythema and friability is noted in the distal oesophagus.
+The oesophageal mucosa is diffusely granular and erythematous, consistent with reflux oesophagitis.
+There is visible exudate on the inflamed oesophageal mucosa, suggestive of an infectious process.
+The oesophageal mucosa shows diffuse erosions, with no visible exudate or friability.
+The mucosa appears thickened and covered with white patches, consistent with a fungal infection.
+The mucosa appears smooth and inflamed, with no visible ulcerations or erosions.
+The oesophageal mucosa appears congested and edematous, with scattered superficial ulcerations.
+The oesophageal mucosa appears diffusely friable and erythematous, with no visible exudate.
+The mucosa appears thickened and covered with a layer of purulent exudate, suggestive of an infectious process.
+The oesophageal mucosa appears nodular and inflamed, with no visible erosions or ulcerations.
+A diffuse, erythematous, and granular appearance of the oesophageal mucosa is noted, consistent with reflux oesophagitis.
 -----------------------------------------------------------------FD_OesophagealNodularDescriptors
 Regenerative change most likely explains the nodular changes.
 The nodular area is a Paris IIa/c lesion.
 This is a Paris IIb lesion.
+Upon endoscopic examination, nodular lesions are observed in the oesophagus.
+The oesophageal mucosa presents with multiple nodular elevations.
+Nodular areas are noted in the mid-oesophagus.
+Endoscopy shows multiple elevated nodules in the distal oesophagus.
+The nodules are visible as discrete, round elevations on the oesophageal mucosa.
+Multiple sessile nodules are seen in the oesophagus.
+The oesophageal mucosa is characterized by numerous small nodules.
+A series of nodular lesions are present in the oesophagus.
+The nodules are irregularly shaped and located in the proximal oesophagus.
+Oesophageal endoscopy reveals the presence of multiple nodules, with some showing central depression.
+The nodules are visible as small, raised lesions on the oesophageal mucosa.
+There are multiple submucosal nodules observed in the oesophagus.
+Endoscopy shows the presence of elevated, reddish nodules in the oesophageal mucosa.
+The oesophageal mucosa presents with a series of round, elevated nodules.
+The nodular lesions are present throughout the entire length of the oesophagus.
+The nodules are well-demarcated and located in the lower third of the oesophagus.
+Multiple, small nodules are present in the oesophageal mucosa, with some showing a central depression.
+The oesophageal mucosa is noted to have numerous nodules, some of which are polypoid in appearance.
+Endoscopic examination reveals numerous small nodular elevations in the oesophagus.
+The nodules are visible as small, pinkish lesions on the oesophageal mucosa.
 -----------------------------------------------------------------FD_DuodenumPolypDescriptors
-The duodenal lesion looks like an adenoma.
+Upon endoscopic examination of the duodenum, multiple nodular lesions are noted throughout the mucosa.
+The duodenal mucosa appears erythematous and nodular, with scattered areas of ulceration and friability.
+The nodular lesions appear to be sessile, with a smooth surface and regular contour.
+The nodules vary in size, with the largest measuring approximately 1 cm in diameter.
+The mucosa surrounding the nodules is inflamed and edematous, with a granular appearance.
+Biopsies of the nodules reveal lymphoid hyperplasia with reactive germinal centers.
+The nodules are distributed throughout the duodenal bulb and descending duodenum.
+The nodules are well-circumscribed and appear to arise from the submucosa.
+The nodules are uniform in appearance, without any areas of necrosis or ulceration.
+The nodules appear to be confined to the mucosa and submucosa, without any evidence of deeper invasion.
+The nodules are seen in the context of underlying inflammatory bowel disease, including Crohn's disease and ulcerative colitis.
+The nodular lesions appear to be inflammatory in nature, without any features suggestive of neoplasia.
+The nodules are not associated with any significant luminal narrowing or obstruction.
+The nodules are visualized using high-resolution endoscopy with narrow-band imaging technology.
+The nodules are scattered throughout the duodenum, with a patchy distribution.
+The nodules are characterized by an increase in the number and size of lymphoid follicles within the mucosa.
+The nodules are located in the second and third portions of the duodenum, with sparing of the duodenal papilla.
+The nodules are closely inspected using chromoendoscopy with indigo carmine staining to enhance mucosal detail.
+The nodular lesions are noted to have a pale appearance on narrow-band imaging, consistent with lymphoid tissue.
+The nodules are monitored over time for any signs of growth or malignant transformation.
+
 -----------------------------------------------------------------FD_DuodenumUlcerDescriptors
-The ulcer is likely Helicobacter related.
-THe ulcer looks like an invasive lesion.
-THe distribution of ulceration suggests a lymphomatous lesion.
+Upon endoscopic examination, a duodenal ulcer is visible at the angle of the duodenum.
+The mucosa surrounding the ulcer appears inflamed and edematous.
+The ulcer measures approximately 1 cm in diameter and has a sharply defined border.
+The base of the ulcer is covered in a yellowish fibrinous exudate.
+There is a visible blood vessel at the edge of the ulcer, suggesting a high risk of bleeding.
+The edges of the ulcer appear to be undermined, which may indicate ongoing tissue destruction.
+The ulcer appears to be a chronic lesion, with signs of previous healing and scarring.
+A biopsy taken from the edge of the ulcer shows evidence of Helicobacter pylori infection.
+There are no visible signs of perforation or penetration into adjacent organs or tissues.
+The ulcer appears to be located on the first part of the duodenum, just distal to the pylorus.
+The surrounding mucosa appears hyperemic and erythematous, consistent with active inflammation.
+The ulcer appears to be a solitary lesion, with no evidence of multiple or diffuse involvement.
+The margins of the ulcer appear to be slightly raised, with a central depression.
+The ulcer base appears to be necrotic and sloughing, with visible debris and exudate.
+The adjacent mucosa appears to be normal, with no evidence of erosion or ulceration.
+The ulcer appears to be a deep lesion, with evidence of fibrosis and scarring in the surrounding tissue.
+The surrounding mucosa appears to be friable and prone to bleeding upon contact.
+There is no evidence of active bleeding at the site of the ulcer, but there may be a high risk of rebleeding.
+The ulcer appears to be a benign lesion, with no evidence of malignant transformation.
+The edges of the ulcer appear to be irregular and ragged, suggesting ongoing tissue destruction and repair.
 -----------------------------------------------------------------FD_DuodenumStrictureDescriptors
-The duodenal stricture is likely related to previous ulceration
-The stricture may need stenting eventually.
-Likely Crohn's related stricturing
-The stricture feels fibrotic
+Upon endoscopy, a duodenal stricture appears as a narrowing of the lumen of the duodenum.
+The duodenal stricture has a smooth and regular contour, without any signs of ulceration or erosion.
+The narrowing of the duodenal lumen at the stricture site is severe, allowing only a small-caliber endoscope to pass through.
+The stricture is located at the second part of the duodenum, and it appears to be circumferential in nature.
+The duodenal mucosa proximal to the stricture appears slightly erythematous, while the distal mucosa appears normal.
+Biopsies taken from the stricture show granulation tissue and mild chronic inflammation.
+The stricture has a fibrotic appearance, suggesting chronicity.
+There is no evidence of bleeding or exudate at the site of the duodenal stricture.
+The narrowing of the lumen is more pronounced during end-inspiration.
+The stricture is non-tapering and involves the entire circumference of the duodenal lumen.
+The stricture is located at the level of the ampulla of Vater and appears to be extrinsic in nature.
+The mucosa surrounding the stricture appears normal, with no signs of inflammation or ulceration.
+The duodenal stricture has a non-distensible appearance, suggestive of fibrosis.
+The diameter of the duodenal lumen at the stricture site is significantly smaller than the diameter of the duodenum proximal and distal to the stricture.
+The stricture is located at the third part of the duodenum, and it appears to be eccentric in nature.
+The stricture has a sharp and well-defined margin, suggesting a compressive etiology.
+The narrowing of the duodenal lumen is accompanied by a slight mucosal fold thickening.
+The duodenal stricture is non-peristaltic and exhibits limited mobility upon insufflation.
+The stricture appears to be extraluminal in nature, with no evidence of intraluminal obstruction.
 -----------------------------------------------------------------FD_DuodenumInflammationDescriptors
-The duodenitis is likely to heal with PPI therapy.
-The duodenitis is likely to heal spontaneously.
+Upon endoscopy, the duodenal mucosa appears edematous and inflamed.
+The duodenal folds are blunted and appear to be hyperemic, suggestive of inflammation.
+There are scattered areas of erythema and friability seen throughout the duodenum.
+The mucosa appears granular and thickened in appearance, indicative of chronic inflammation.
+There is diffuse erythema and loss of vascularity noted in the duodenal mucosa.
+The duodenal mucosa appears to have a rough and patchy surface, suggestive of inflammation.
+The mucosa is ulcerated and friable, with evidence of pus and exudate present in some areas.
+The duodenal mucosa appears to have an uneven, cobblestone-like appearance due to inflammation.
+There are multiple erosions and ulcers noted in the duodenal mucosa, suggestive of ongoing inflammation.
+The duodenal folds appear thickened and rigid, with erythema noted in the intervening mucosa.
+There are areas of nodularity seen throughout the duodenal mucosa, suggestive of chronic inflammation.
+The mucosa appears reddened and swollen, with evidence of exudate present in some areas.
+There is diffuse erythema and friability noted in the duodenal mucosa, with areas of active bleeding.
+The duodenal mucosa appears to have a cobblestone appearance, with multiple areas of ulceration and inflammation.
+There are scattered areas of hemorrhage seen throughout the duodenal mucosa, indicative of inflammation.
+The duodenal mucosa appears edematous and congested, with evidence of exudate present in some areas.
+There is diffuse erythema and loss of vascularity noted in the duodenal mucosa, with areas of necrosis seen.
+The mucosa appears granular and thickened in appearance, with areas of active bleeding.
+There are multiple erosions and ulcers seen throughout the duodenal mucosa, suggestive of ongoing inflammation.
+The duodenal mucosa appears to have a rough, irregular surface with areas of friability and ulceration present.
 -----------------------------------------------------------------FD_DuodenumNodularDescriptors
-The nodularity in the duodenum is likely a healing duodenitis.
-The nodularity is associated with scalloping and suggests a coeliac disease.
+At the first part of the duodenum, there are multiple nodules, each measuring 0.5-1 cm in diameter.
+These nodules have a polypoid appearance with a smooth surface, suggestive of hamartomatous polyps.
+The nodules are pink in color, with no signs of bleeding or ulceration.
+There are multiple Paris type 0-I nodules distributed throughout the duodenal bulb.
+On closer inspection, these nodules have a velvety surface and are non-tender to touch.
+There is a single Paris type 0-IIa nodule located in the second part of the duodenum, measuring 0.8 cm in diameter.
+The nodule has a smooth, slightly elevated surface and appears to be covered with a layer of mucus.
+Multiple nodules are present in the third part of the duodenum, with irregular shapes and sizes.
+The nodules have a granular and erythematous appearance and are classified as Paris type 0-IIb.
+The duodenal nodules are consistent with a diagnosis of lymphoid hyperplasia, without any signs of malignancy.
+A single nodule is present in the fourth part of the duodenum, measuring 1.2 cm in diameter and classified as Paris type 0-IIa.
+The nodule has a smooth, slightly raised surface, and appears to be non-bleeding and non-tender.
+Multiple nodules are seen in the periampullary region, with a papillary or sessile appearance.
+These nodules are pink, with a smooth surface, and have a Paris classification of 0-IIa or 0-IIb.
+There is a single 0-IIc Paris type nodule present in the fourth part of the duodenum, measuring 1.5 cm in diameter.
+The nodule has a slightly elevated, irregular surface, and is covered with a layer of mucus.
+Multiple small nodules measuring up to 0.5 cm in diameter are seen in the second and third part of the duodenum.
+The nodules have a polypoid appearance with smooth surfaces, and are classified as Paris type 0-I.
+The duodenal nodules appear consistent with a diagnosis of peptic ulcer disease, without any signs of complications.
+Multiple nodules are present throughout the duodenum, with a range of Paris classifications, suggesting a multifocal disease process.
 -----------------------------------------------------------------FD_PolypBiopsies
-The polyp was biopsied.
-The polyp was resected by EMR.
-The polyp was resected by ESD.
-The polyp was tatooed.
-The polyp was too large to resect.
-The polyp did not lift on injection with normal saline and was therefore not resected
+The polyp was visualized and biopsied during upper endoscopy.
+Under endoscopic visualization, the polyp was removed using EMR.
+ESD was performed to remove the polyp after lifting it with saline injection.
+The polyp was marked with a tattoo to aid in future surveillance endoscopy.
+Due to its large size, the polyp was not able to be resected during the current endoscopic session.
+The polyp did not lift on saline injection and was therefore not amenable to endoscopic resection.
+Using a snare, the polyp was excised and retrieved for pathologic analysis.
+Endoscopic mucosal resection was performed to remove the polyp in its entirety.
+The base of the polyp was cauterized with an argon plasma coagulator to prevent bleeding.
+The polyp was grasped with a snare and cut with a hot biopsy forceps for removal.
+The polyp was removed with a combination of snare and forceps, and hemostasis was achieved with an endoscopic clip.
+The base of the polyp was fulgurated with an electrocautery device to prevent future bleeding or regrowth.
+The polyp was removed with minimal thermal injury to surrounding tissue using a cold snare technique.
 -----------------------------------------------------------------FD_UlcerBiopsies
-The ulcer was biopsied x8.
-The ulcer will be rebiopsied at the next endoscopy.
-Biopsies were difficult to take as hard tissue.
-Bleeding on biopsy.
+The ulcer was biopsied x8 for further analysis.
+Difficulty was encountered during biopsy as the tissue of the lesion appeared hard and challenging to obtain samples from.
+Following the biopsy of the lesion, there was bleeding, which was promptly managed.
+A biopsy of the lesion was taken using a forceps under direct endoscopic visualization.
+The lesion was suspicious, and multiple biopsies were taken to ensure adequate tissue sampling.
+Biopsies of the lesion were taken from both the edges and the center to obtain a representative sample.
+During biopsy, it was noted that the lesion had a friable surface and bled easily.
+Multiple biopsies were taken of the lesion to ensure adequate sampling, given its irregular shape.
+Biopsy samples of the lesion were obtained using a cold snare to minimize the risk of thermal injury.
+The biopsy was performed using a needle biopsy forceps, with the tissue samples sent for pathological analysis.
+During biopsy, the lesion was noted to be firm and required multiple passes to obtain a diagnostic sample.
+After taking a biopsy of the lesion, hemostasis was achieved with hemoclips to control any bleeding.
+The lesion was biopsied using a standard forceps.
 -----------------------------------------------------------------FD_StrictureBiopsies
-The stricture was biopsied x8.
-The stricture will be rebiopsied at the next endoscopy.
-Biopsies were difficult to take as hard tissue.
-Bleeding on biopsy.
+The ulcer was biopsied x8 for further analysis.
+Difficulty was encountered during biopsy as the tissue of the lesion appeared hard and challenging to obtain samples from.
+Following the biopsy of the lesion, there was bleeding, which was promptly managed.
+A biopsy of the lesion was taken using a forceps under direct endoscopic visualization.
+The lesion was suspicious, and multiple biopsies were taken to ensure adequate tissue sampling.
+Biopsies of the lesion were taken from both the edges and the center to obtain a representative sample.
+During biopsy, it was noted that the lesion had a friable surface and bled easily.
+Multiple biopsies were taken of the lesion to ensure adequate sampling, given its irregular shape.
+Biopsy samples of the lesion were obtained using a cold snare to minimize the risk of thermal injury.
+The biopsy was performed using a needle biopsy forceps, with the tissue samples sent for pathological analysis.
+During biopsy, the lesion was noted to be firm and required multiple passes to obtain a diagnostic sample.
+After taking a biopsy of the lesion, hemostasis was achieved with hemoclips to control any bleeding.
+The lesion was biopsied using a standard forceps.
 -----------------------------------------------------------------FD_InflammationBiopsies
-The inflammation was biopsied x8.
-The inflammation will be rebiopsied at the next endoscopy.
-Biopsies were difficult to take as hard tissue.
-Bleeding on biopsy.
+The ulcer was biopsied x8 for further analysis.
+Difficulty was encountered during biopsy as the tissue of the lesion appeared hard and challenging to obtain samples from.
+Following the biopsy of the lesion, there was bleeding, which was promptly managed.
+A biopsy of the lesion was taken using a forceps under direct endoscopic visualization.
+The lesion was suspicious, and multiple biopsies were taken to ensure adequate tissue sampling.
+Biopsies of the lesion were taken from both the edges and the center to obtain a representative sample.
+During biopsy, it was noted that the lesion had a friable surface and bled easily.
+Multiple biopsies were taken of the lesion to ensure adequate sampling, given its irregular shape.
+Biopsy samples of the lesion were obtained using a cold snare to minimize the risk of thermal injury.
+The biopsy was performed using a needle biopsy forceps, with the tissue samples sent for pathological analysis.
+During biopsy, the lesion was noted to be firm and required multiple passes to obtain a diagnostic sample.
+After taking a biopsy of the lesion, hemostasis was achieved with hemoclips to control any bleeding.
+The lesion was biopsied using a standard forceps.
 -----------------------------------------------------------------FD_NoduleBiopsies
-The nodular area was biopsied x8.
-The nodule will be rebiopsied at the next endoscopy.
-Biopsies were difficult to take as hard tissue.
-Bleeding on biopsy.
+The ulcer was biopsied x8 for further analysis.
+Difficulty was encountered during biopsy as the tissue of the lesion appeared hard and challenging to obtain samples from.
+Following the biopsy of the lesion, there was bleeding, which was promptly managed.
+A biopsy of the lesion was taken using a forceps under direct endoscopic visualization.
+The lesion was suspicious, and multiple biopsies were taken to ensure adequate tissue sampling.
+Biopsies of the lesion were taken from both the edges and the center to obtain a representative sample.
+During biopsy, it was noted that the lesion had a friable surface and bled easily.
+Multiple biopsies were taken of the lesion to ensure adequate sampling, given its irregular shape.
+Biopsy samples of the lesion were obtained using a cold snare to minimize the risk of thermal injury.
+The biopsy was performed using a needle biopsy forceps, with the tissue samples sent for pathological analysis.
+During biopsy, the lesion was noted to be firm and required multiple passes to obtain a diagnostic sample.
+After taking a biopsy of the lesion, hemostasis was achieved with hemoclips to control any bleeding.
+The lesion was biopsied using a standard forceps.
 -----------------------------------------------------------------END

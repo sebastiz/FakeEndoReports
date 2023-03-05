@@ -28,11 +28,38 @@ sessile.
 excavated.
 deep.
 superficial.
+exudative
+necrotic
+fibrotic
+hemorrhagic
+indurated
+scarred
+cratered
+fungating
 -----------------------------------------------------------------FD_StrictureDescriptors
 circumferential.
 fibrous.
 tight.
 friable.
+stenotic
+constricted
+narrowed
+obliterative
+fibrotic
+stiff
+scarred
+sclerotic
+inflexible
+unyielding
+thickened
+contracted
+inflamed
+Oedematous
+Hhpertrophied
+hyperemic
+ulcerated
+rough
+irregular
 -----------------------------------------------------------------FD_InflammationDescriptors
 erosive.
 severe.
@@ -69,6 +96,19 @@ The segment looks flat.
 Prague score C0M3
 It is x cm in length.
 This is an ultra-short segment.
+The length of the Barrett's segment was noted to be x cm in length.
+The presence of mucosal irregularity was observed along the length of the Barrett's segment.
+The characteristic columnar epithelium was observed on biopsy samples taken from the Barrett's segment.
+The area of metaplasia was noted to extend to the gastroesophageal junction.
+Multiple biopsies were obtained from the Barrett's segment for histopathological evaluation.
+The Prague classification of the Barrett's segment was noted to be C0M8.
+The appearance of the segment was consistent with the endoscopic diagnosis of Barrett's oesophagus.
+The Barrett's segment appeared to have a nodular surface with irregular borders.
+The presence of a columnar-lined oesophagus was noted during endoscopy.
+The length of the segment was measured and found to be consistent with the diagnosis of Barrett's oesophagus.
+The presence of visible vascularity was noted within the Barrett's segment.
+The Z-line was observed to be displaced distally from its usual position.
+The Barrett's segment had a velvety appearance with visible rugal folds.
 -----------------------------------------------------------------FD_BarrettDetail1_Benign
 The segment looks flat.
 No nodularity is present.
@@ -89,6 +129,20 @@ LAWS demonstrated at xcm.
 Mucosal adherence noted through the length of Barrett's
 Paris x noted at x cm
 Grossly abnormal vascular pattern at x cm
+The segment appeared flat with an irregular mucosal surface.
+There were multiple nodules with erythematous mucosa and irregular borders.
+The mucosa appeared thickened and nodular with a cobblestone-like appearance.
+There were multiple areas of nodularity and irregularity with raised mucosal edges.
+The mucosa appeared friable and showed areas of ulceration.
+There was loss of vascular pattern and patchy erythema noted.
+The affected segment had a "tongue-like" appearance with a nodular mucosal surface.
+There were multiple areas of discoloration and nodularity with an irregular surface contour.
+The affected segment appeared thicker and more rigid compared to the surrounding normal mucosa.
+There was a change in color and texture of the mucosa in the affected segment compared to the surrounding normal mucosa.
+There were multiple raised nodules with a velvety appearance and irregular borders.
+The affected segment showed a loss of normal vascular pattern and irregular mucosal edges.
+The mucosa appeared thickened and irregular with an uneven surface contour.
+The affected segment showed a mottled appearance with multiple areas of nodularity and ulceration.
 -----------------------------------------------------------------FD_BarrettDetail1
 FD_BarrettDetail1 1
 FD_BarrettDetail1 2.
@@ -129,6 +183,23 @@ The lower oesopahgeal sphincter looks widely patent
 The oesopahgitis is consistent with acid reflux.
 severe oesophagitis with ulceration.
 Candida present.
+The gastroesophageal junction appears normal, but there is diffuse erythema of the distal oesophagus.
+There are scattered erosions present in the oesophageal mucosa.
+The oesophageal mucosa is friable and edematous.
+There is diffuse erythema and friability throughout the oesophagus.
+The oesophageal mucosa appears thickened and nodular.
+There is severe stricture at the distal oesophagus.
+The oesophageal mucosa is thickened and has a cobblestone appearance.
+The oesophageal mucosa appears pale and atrophic.
+The distal oesophagus appears normal, but there is diffuse erythema and friability in the mid and proximal oesophagus.
+The oesophageal mucosa is eroded with fibrinous exudates present.
+There is diffuse mucosal edema throughout the oesophagus.
+The oesophageal mucosa has a furrowed or corrugated appearance.
+There is significant ulceration and bleeding present in the oesophageal mucosa.
+There are multiple areas of oesophageal mucosal breaks with overlying fibrin and purulent exudates.
+The oesophageal mucosa is thickened and has a leathery appearance.
+There is significant narrowing of the oesophageal lumen due to stricture formation with areas of mucosal ulceration.
+The oesophageal mucosa is hyperemic and has a granular appearance with areas of erosion and exudate.
 -----------------------------------------------------------------FD_InletIntro
 Inlet patch seen on withdrawal.
 At 18cm two inlet patches were seen.
@@ -151,13 +222,45 @@ The lumen was tight
 Trachealisation of oesophagus.
 mild trachealization.
 Not the most convincing oesophageal trachealisation
+The oesophagus appears to have a mildly friable mucosa.
+Multiple concentric rings are noted throughout the oesophagus.
+The patient's oesophagus is noted to have linear furrowing.
+Trachealisation of the oesophagus is observed.
+The lumen is found to be tight, with a degree of stenosis noted.
+The proximal oesophagus appears normal, with the appearance of white exudates in the mid to distal oesophagus.
+The oesophagus is mildly dilated and shows signs of crepe paper appearance.
+The endoscopic findings are consistent with eosinophilic oesophagitis.
+The length of the segment affected by eosinophilic oesophagitis is 5 cm.
+The endoscopic appearance of the oesophagus is consistent with a positive Prague score for eosinophilic oesophagitis.
+The oesophagus is found to have a circumferential furrowed appearance.
+Multiple whitish plaques are noted in the oesophagus that may be suggestive of eosinophilic oesophagitis or Candida esophagitis.
+The endoscopic findings reveal an ultra-short segment of the oesophagus affected by eosinophilic oesophagitis.
+The mucosa of the oesophagus appears thickened and edematous.
+The oesophagus shows a longitudinal white line, which may represent mucosal exudates.
+The oesophagus demonstrates concentric rings, as well as a corrugated, or "feline" appearance.
+The endoscopic appearance of the oesophagus is suggestive of eosinophilic oesophagitis, with multiple linear furrows and white plaques.
+The patient's oesophagus shows a ringed appearance, with a degree of narrowing noted.
+The distal oesophagus shows signs of an eosinophilic infiltrate, with a white exudate coating the mucosa.
+The endoscopic appearance of the oesophagus shows a friable mucosa with a fine white stippling, which is highly suggestive of eosinophilic oesophagitis.
 -----------------------------------------------------------------FD_EosinophilicDetail
-EoEBoo1
-EoEBoo2
-EoEBoo3
-EoEBo4
-EoEBoo5
-EoEBo06
+OGD showed the presence of several white exudates in the mid and distal esophagus.
+Multiple white exudates were observed in the esophagus, which may indicate candida or food debris.
+The pull sign was demonstrated in the mid and distal esophagus.
+The patient had crepe paper-like appearance of the oesophageal mucosa on endoscopy, suggestive of eosinophilic oesophagitis.
+Rings were noted throughout the esophagusconsistent with eosinophilic oesophagitis.
+OGD revealed a tight esophageal lumen in the mid and distal segments.
+Trachealisation of the esophagus was observed on endoscopic evaluation.
+Mild trachealization of the esophagus was noted on endoscopy.
+Endoscopy showed mild trachealisation of the esophagus, which may be consistent with EoE.
+The esophagus appeared to have a corrugated or ridged appearance on endoscopic examination.
+The mucosa of the esophagus was noted to be thickened and white in color during endoscopy.
+OGD revealed the presence of longitudinal furrows in the distal esophagus, consistent with eosinophilic oesophagitis.
+Whitish exudates were seen in the esophagus during endoscopy, suggestive of eosinophilic oesophagitis.
+The esophageal mucosa appeared to be friable on endoscopic examination.
+Linear furrowing was observed in the mid and distal esophagus during endoscopy, which may indicate eosinophilic oesophagitis.
+Endoscopy revealed the presence of concentric rings throughout the esophagus, suggestive of eosinophilic oesophagitis.
+The esophageal mucosa was noted to be edematous and inflamed on endoscopic evaluation.
+A whitish exudate was seen in the esophagus on endoscopic examination, which may indicate eosinophilic oesophagitis.
 -----------------------------------------------------------------FD_Dilatation
 The stricture will need to be dilatated in radiology
 A superficial mucosal tear was seen after dilatation
