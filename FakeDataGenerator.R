@@ -289,7 +289,7 @@ out<-listtodf(out)
 
   out <- apply(out, 1, function(x) {
   t<-LocationAndBiopsy(x,".*nodul.*duod\\.","FD_DuodenumNodularDescriptors","FD_PolypBiopsies",LOCATION_BIOPSES,
-                        "FD_NoduleBiopsies","END")
+                        "FD_NoduleBiopsies","FD_Ulcer_Recommendations")
   })
   out<-listtodf(out)
 
@@ -344,7 +344,8 @@ Indic<-paste0(replicate(1000,sample(FD_Indication,1,replace=F)),"")
 out$out<-paste0("INDICATIONS FOR PROCEDURE: ",Indic," FINDINGS: ",out$out)
 out<-listtodf(out)
 
-############################################################## 10. Recommendations #######################################################################################
+
+
 
 
 
@@ -355,6 +356,8 @@ out<-listtodf(out)
 
 
 ############################################################## 9. Follow-up: #######################################################################################
+
+#If there are any of the FD_Object in findings, then add the appropriate recommendations in to the text:
 
 
 
@@ -604,7 +607,9 @@ out2$PathReport<-paste(out2$report," ",out2$PathReport,"")
 out2$report<-NULL
 out2$Compartment<-NULL
 out2$WritePathReport<-NULL
-out2$out<-gsub("COMPARTMENT_START.* COMPARTMENT_END","",out2$out)
+
+
+
 
 
 #further tidy up when biopsies not taken
@@ -614,18 +619,64 @@ names(out2)<-c("report","path")
 out3<-bulker("GOJ|fundus|oesophag|stomach body|duodenal bulb|antrum|second part of the duodenum|third part of the duodenum",out2)
 out3<-listtodf(out3)
 
+#Remove all the compartment subheadings:
+out3$out<-gsub("COMPARTMENT_START\\s*\\w+\\s*.*?\\s*COMPARTMENT_END\\n?","",out3$out,perl = TRUE)
+
+
+############################################################## 12. Recommendations #######################################################################################
+
+
+#If there are any of the FD_Object in findings, then add the appropriate recommendations in to the text:
+#if the word exists then add recommendation from a list:
 
 
 
 
+addSampleText <- function(out3, keyword, sampleList,heading) {
+  for (i in 1:nrow(out3)) {
+    if (grepl(keyword, tolower(out3[i, "out"]))) {
+      out3[i, "out"] <- paste0(out3[i, "out"],heading, sample(sampleList, 1))
+    }
+  }
+  return(out3)
+}
+sampleDescriptorList_ulcer<-ListContstructor("FD_Ulcer_Recommendations","FD_Nodule_Recommendations",LOCATION_BIOPSES)
+sampleDescriptorList_nodule<-ListContstructor("FD_Nodule_Recommendations","FD_Stricture_Recommendations",LOCATION_BIOPSES,)
+sampleDescriptorList_stricture<-ListContstructor("FD_Stricture_Recommendations","FD_Inflammation_Recommendations",LOCATION_BIOPSES,)
+sampleDescriptorList_inflammation<-ListContstructor("FD_Inflammation_Recommendations","FD_Polyp_Recommendations",LOCATION_BIOPSES,)
+sampleDescriptorList_polyp<-ListContstructor("FD_Polyp_Recommendations","FD_Stricture_FollowUp",LOCATION_BIOPSES,)
 
-############################################################################################################################
-###################################### 12. Top part of the endoscopy report ################################################
-############################################################################################################################
+out3 <- addSampleText(out3, "ulcer", sampleDescriptorList_ulcer, " RECOMMENDATION: ")
+out3 <- addSampleText(out3, "nodule", sampleDescriptorList_nodule, " RECOMMENDATION: ")
+out3 <- addSampleText(out3, "inflammation", sampleDescriptorList_stricture, " RECOMMENDATION: ")
+out3 <- addSampleText(out3, "inflammation", sampleDescriptorList_inflammation, " RECOMMENDATION: ")
+out3 <- addSampleText(out3, "polyp", sampleDescriptorList_polyp, " RECOMMENDATION: ")
 
-samplenumber <- 2000
+############################################################## 12. Follow-up #######################################################################################
+sampleDescriptorList_stricture<-ListContstructor("FD_Stricture_FollowUp","FD_Nodule_FollowUp",LOCATION_BIOPSES)
+sampleDescriptorList_nodule<-ListContstructor("FD_Nodule_FollowUp","FD_Inflammation_FollowUp",LOCATION_BIOPSES)
+sampleDescriptorList_inflammation<-ListContstructor("FD_Inflammation_FollowUp","FD_Polyp_FollowUp",LOCATION_BIOPSES)
+sampleDescriptorList_polyp<-ListContstructor("FD_Polyp_FollowUp","FD_Ulcer_FollowUp",LOCATION_BIOPSES)
+sampleDescriptorList_ulcer<-ListContstructor("FD_Ulcer_FollowUp","END",LOCATION_BIOPSES)
+
+
+
+
+# Example usage
+# Create a sample data frame
+# Add sample text to rows containing certain words
+out3 <- addSampleText(out3, "ulcer", sampleDescriptorList_ulcer," FOLLOW UP: ")
+out3 <- addSampleText(out3, "nodule", sampleDescriptorList_nodule," FOLLOW UP: ")
+out3 <- addSampleText(out3, "inflammation", sampleDescriptorList_stricture," FOLLOW UP: ")
+out3 <- addSampleText(out3, "inflammation", sampleDescriptorList_inflammation," FOLLOW UP: ")
+out3 <- addSampleText(out3, "polyp", sampleDescriptorList_polyp," FOLLOW UP: ")
+
+###################################### 15. Top part of the endoscopy report ################################################
+
+
+samplenumber <- 1000
 HospitalNumberID <- paste("Hospital Number: ", sample(c(LETTERS)),
-                          sample(1e+06:9999999, (samplenumber - 1900), replace = T),
+                          sample(1e+06:9999999, (samplenumber - 900), replace = T),
                           sep = ""
 )
 NHS_Trust <- replicate(samplenumber, c("Hospital: Random NHS Foundation Trust"))
@@ -644,12 +695,82 @@ Date_of_ProcedureAll <- generator::r_date_of_births(samplenumber,
                                                     start = as.Date("2001-01-01"), end = as.Date("2017-01-01")
 )
 
+Date_of_Procedure <- Date_of_ProcedureAll
+Date <- paste("Date of procedure: ", Date_of_Procedure)
+EndoscopistList <- as.list(sample(randomNames::randomNames(
+  samplenumber,
+  "first", "last"
+), 10, replace = T))
+Second_EndoscopistList <- as.list(sample(randomNames::randomNames(
+  samplenumber,
+  "first", "last"
+), 10, replace = T))
+Endoscopist <- replicate(samplenumber, paste("Endoscopist: Dr. ",
+                                             sample(EndoscopistList, 1, replace = F),
+                                             sep = ""
+))
+Second_Endoscopist <- replicate(samplenumber, paste("2nd Endoscopist: Dr. ",
+                                                    sample(Second_EndoscopistList, 1, replace = F),
+                                                    sep = ""
+))
+MedicationsFent <- replicate(samplenumber, paste(
+  "Medications: Fentanyl ",
+  sample(list(
+    x = "12.5mcg", x = "25mcg", x = "50mcg",
+    x = "75mcg", x = "100mcg", x = "125mcg",
+    x = "150mcg"
+  ), 1, replace = F)
+))
+MedicationsMidaz <- replicate(samplenumber, paste(
+  "Midazolam ",
+  sample(list(
+    x = "1mg", x = "2mg", x = "3mg",
+    x = "4mg", x = "5mg", x = "6mg", x = "7mg"
+  ),
+  1,
+  replace = F
+  )
+))
+Instrument <- replicate(samplenumber, paste(
+  "Instrument: ",
+  sample(list(
+    x = "FG1", x = "FG2", x = "FG3",
+    x = "FG4", x = "FG5", x = "FG6", x = "FG7"
+  ),
+  1,
+  replace = F
+  )
+))
+Extent_of_Exam <- replicate(samplenumber, paste(
+  "Extent of Exam: ",
+  sample(list(
+    x = "Failed intubation", x = "Oesophagus",
+    x = "Stomach body", x = "D1", x = "D2",
+    x = "Pylorus", x = "GOJ"
+  ), 1, replace = F)
+))
 
+PROCEDURE_PERFORMED <- "Procedure Performed: Gastroscopy (OGD)"
+
+
+
+
+########################################## 14. Follow up #################################################
+#How to make this compartment specific
+#########################################################################################################
+
+
+out3$out<-paste0(HospitalNumberID," , ",NHS_Trust," , ",Date_of_Birth," , ",GeneralPractictioner,"  , ",Date, Endoscopist,
+                 "  , ",Second_Endoscopist,"  , ", MedicationsFent,"  , ", MedicationsMidaz,"  , ",
+                 Instrument,"  , ", Extent_of_Exam,"  , ",PROCEDURE_PERFORMED,"  , ",out3$out)
 ############################################################################################################################
 ############################################################################################################################
 ############################################################################################################################
 
+#A little bit post post production clean up:
 
+  out3$out<-gsub("(?i)(FOLLOW UP:)(?!.*\\1)", "",out3$out,perl=T)
+  out3$out<-gsub("(?i)(RECOMMENDATION:)(?!.*\\1)", "",out3$out,perl=T)
 
 
 #To do:
@@ -663,36 +784,7 @@ Date_of_ProcedureAll <- generator::r_date_of_births(samplenumber,
 
 #Now you have to tie the pathology reports to the endoscopy
 
-##### LISTS- Sentence introduction #####
-# Distribute the reports so that there are empties and Normals
-# #Need compartment specific indication- can get from the endoscopic indication when this is done
-# CLINICAL DETAILS
-# Alternating diarrhoea and constipation ? microscopic colitis.
-#
-# #Derive this from the Nature of the Specimen
-# MACROSCOPICAL DESCRIPTION
-# Nature of specimen as stated on request form = ' x2 right colon bx, x 2 left
-#   colon bx.'.
-# Nature of specimen as stated on pot = ' x2 right colon bx, x 2 left colon
-#   bx.'.
-#
-# Four pieces of tissue, the largest measuring 3 x 1 x 1 mm and the smallest 2 x
-# 1 x 1 mm, received on a pointed cellulose strip.
-# All in one.
-#
-# Submitted by: Peter Sounthararajah 20.04.16
-# sch
-#
-# #Will need to gets the varieties of this again based on the caompartment sampled- may need to categorise phrases based on compartment taken eg eoe phrases/ Barrett's phrases etc.
-# HISTOLOGY
-# These biopsies of large bowel mucosa are within normal histological limits.
-# There is no evidence of microscopic colitis.
-#
-# DIAGNOSIS
-# Right and left colon, biopsies:
-#   - normal.
-# Reported by Dr Helene McCarthy and Dr Ula Mahadeva /28-04-16
-# T67995, M14070, M00120
+
 
 
 #To do:
