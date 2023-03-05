@@ -600,9 +600,7 @@ out3<-listtodf(out3)
 
 #Now you have to tie the pathology reports to the endoscopy
 
-                    
-                    
-                    
+
 
 
 #To do:
